@@ -1,4 +1,4 @@
-﻿<Window x:Class="LifeinFile.MainWindow"
+﻿<Window x:Class="LifeinFile.PetWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="LifeInFile" Height="200" Width="200"

@@ -1,13 +1,19 @@
-﻿using System.Windows;
+﻿using LifeinFile.Scripts.CageSystem;
+using System.Windows;
 using System.Windows.Input;
 
 namespace LifeinFile
 {
-    public partial class MainWindow : Window
+    public partial class PetWindow : Window
     {
-        public MainWindow()
+        Pet myPet;
+
+        public PetWindow()
         {
             InitializeComponent();
+            CageWindow cage = new CageWindow();
+            cage.Show();
+            myPet = new Pet(this, cage);
         }
 
         // マウスの左ボタンを押したままドラッグで移動できるようにする
