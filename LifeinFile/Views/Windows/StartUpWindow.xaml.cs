@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using LifeinFile.System.Pets;
+using System.Windows;
 using System.Windows.Input;
 
 
@@ -10,8 +11,8 @@ namespace Views.Windows
         {
             InitializeComponent();
 
-            PetWindow petWindow = new PetWindow();
-            petWindow.Show();
+            PetInitData initData = new PetInitData("Test", new System.Numerics.Vector2(100, 100));
+            PetFactory.Create(initData);
 
             Close();
         }

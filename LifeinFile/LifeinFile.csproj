@@ -17,9 +17,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Helper\" />
-    <Folder Include="Models\CageSystem\" />
-    <Folder Include="System\" />
+    <Folder Include="Models\Cages\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\GitHub\LifeinFile\LifeinFile\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\GitHub\LifeinFile\LifeinFile\.editorconfig" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-﻿using Model.PetSystem;
+﻿using LifeinFile.Controller.PetSystem;
 using System.Windows;
 using System.Windows.Input;
 
@@ -6,14 +6,11 @@ namespace Views.Windows
 {
     public partial class PetWindow : Window
     {
-        Pet myPet;
-
-        public PetWindow()
+        PetRoot _root;
+        public PetWindow(PetRoot root)
         {
             InitializeComponent();
-            CageWindow cage = new CageWindow();
-            cage.Show();
-            myPet = new Pet(this, cage);
+            _root = root;
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
@@ -29,7 +26,7 @@ namespace Views.Windows
             {
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-                myPet.EatFiles(files);
+                _root.EatFiles(files);
             }
         }
     }
