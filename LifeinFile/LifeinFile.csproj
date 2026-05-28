@@ -9,11 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Graphic\Pets\TestCat.png" />
+    <None Remove="Assets\Graphic\Pets\TestCat.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Graphic\Pets\TestCat.png" />
+    <Resource Include="Assets\Graphic\Pets\TestCat.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Helper\" />
+    <Folder Include="Models\CageSystem\" />
+    <Folder Include="System\" />
   </ItemGroup>
 
 </Project>

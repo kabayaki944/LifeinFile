@@ -1,7 +1,7 @@
-﻿<Window x:Class="LifeinFile.PetWindow"
+﻿<Window x:Class="Views.Windows.PetWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="LifeInFile" Height="100" Width="100"
+        Title="Pet" Height="100" Width="100"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
@@ -9,6 +9,6 @@
         AllowDrop="True"
         Drop="Window_Drop">
     <Grid>
-        <Image Source="Graphic/Pets/TestCat.png" Width="100" Height="100"/>
+        <Image Source="/Assets/Graphic/Pets/TestCat.png" Width="100" Height="100"/>
     </Grid>
 </Window>

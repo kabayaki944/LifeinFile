@@ -1,8 +1,8 @@
-﻿using LifeinFile.Scripts.CageSystem;
+﻿using Model.PetSystem;
 using System.Windows;
 using System.Windows.Input;
 
-namespace LifeinFile
+namespace Views.Windows
 {
     public partial class PetWindow : Window
     {
@@ -16,7 +16,6 @@ namespace LifeinFile
             myPet = new Pet(this, cage);
         }
 
-        // マウスの左ボタンを押したままドラッグで移動できるようにする
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonDown(e);
@@ -30,16 +29,7 @@ namespace LifeinFile
             {
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-                // ドロップされたすべてのファイルを順番に処理する
-                foreach (string file in files)
-                {
-                    // PCから完全に消去せず、安全に「ゴミ箱」へ送る
-                    Microsoft.VisualBasic.FileIO.FileSystem.DeleteFile(
-                        file,
-                        Microsoft.VisualBasic.FileIO.UIOption.OnlyErrorDialogs,
-                        Microsoft.VisualBasic.FileIO.RecycleOption.SendToRecycleBin
-                    );
-                }
+                myPet.EatFiles(files);
             }
         }
     }

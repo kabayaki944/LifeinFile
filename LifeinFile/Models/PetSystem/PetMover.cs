@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Threading;
 
-namespace LifeinFile.Scripts.PetSystem
+namespace Model.PetSystem
 { 
     public class PetMover
     {
