@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Numerics;
-using System.Text;
+﻿using System.Numerics;
 
-namespace LifeinFile.System.Pets
+namespace LifeinFile.Core.Pets
 {
     class PetInitData
     {

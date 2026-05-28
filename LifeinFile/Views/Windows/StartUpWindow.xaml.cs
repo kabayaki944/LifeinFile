@@ -1,6 +1,5 @@
-﻿using LifeinFile.System.Pets;
+﻿using LifeinFile.Core.Pets;
 using System.Windows;
-using System.Windows.Input;
 
 
 namespace Views.Windows

@@ -1,9 +1,6 @@
 ﻿using LifeinFile.Helper;
 using LifeinFile.Models.Pets;
-using LifeinFile.System.Pets;
-using System;
 using System.Numerics;
-using System.Windows.Threading;
 
 namespace LifeinFile.Controller.PetSystem
 { 
@@ -78,6 +75,7 @@ namespace LifeinFile.Controller.PetSystem
                    duration = _random.Next(MIN_MOVE_DURATION, MAX_MOVE_DURATION)
                };
             }
+            _currentData = data;
             _actionTimer = 0;
         }
     }

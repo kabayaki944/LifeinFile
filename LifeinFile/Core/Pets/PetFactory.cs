@@ -5,7 +5,7 @@ using LifeinFile.Views.Pets;
 
 using Views.Windows;
 
-namespace LifeinFile.System.Pets
+namespace LifeinFile.Core.Pets
 {
     static class PetFactory
     {
@@ -14,7 +14,10 @@ namespace LifeinFile.System.Pets
         public static PetRoot Create(PetInitData initData)
         {
             if(_isFirst)
+            {
                 ProvideUpdate.Start();
+                _isFirst = false;
+            }
 
             PetRoot root = new PetRoot();
             PetModel model = new PetModel(initData.Name, initData.Position);

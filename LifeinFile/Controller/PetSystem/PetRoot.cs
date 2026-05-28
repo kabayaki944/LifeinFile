@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows;
-
-namespace LifeinFile.Controller.PetSystem
+﻿namespace LifeinFile.Controller.PetSystem
 {
     public class PetRoot
     {

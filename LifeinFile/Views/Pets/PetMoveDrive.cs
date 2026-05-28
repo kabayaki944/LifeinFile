@@ -1,9 +1,5 @@
 ﻿using LifeinFile.Helper;
 using LifeinFile.Models.Pets;
-using LifeinFile.System.Pets;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 
 namespace LifeinFile.Views.Pets
