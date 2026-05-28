@@ -19,14 +19,18 @@ namespace LifeinFile.Core.Pets
                 _isFirst = false;
             }
 
+            PetExternal external = new PetExternal();
             PetRoot root = new PetRoot();
             PetModel model = new PetModel(initData.Name, initData.Position);
             PetMoveBrain moveBrain = new PetMoveBrain(model);
             ProvideUpdate.AddUpdate(moveBrain);
-            PetWindow window = new PetWindow(root);
+            PetWindow window = new PetWindow(root, external, model);
             window.Show();
-            PetScreenCollider screenCollider = new PetScreenCollider(model, window);
+            PetCollision collision = new PetCollision(model, window);
+            PetScreenCollider screenCollider = new PetScreenCollider(model, window, collision);
             PetMoveDrive mover = new PetMoveDrive(model, window);
+            
+            external.Construct(model, collision, window);
 
             return root;
         }

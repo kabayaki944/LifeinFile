@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using LifeinFile.Core.Cage;
+using LifeinFile.Models.Cages;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Views.Windows
@@ -8,8 +10,11 @@ namespace Views.Windows
     /// </summary>
     public partial class CageWindow : Window
     {
-        public CageWindow()
+        public CageExternal External { get; }
+        public CageWindow(CageExternal external)
         {
+            External = external;
+
             InitializeComponent();
         }
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)

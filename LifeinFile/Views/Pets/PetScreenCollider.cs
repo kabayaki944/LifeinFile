@@ -9,14 +9,17 @@ namespace LifeinFile.Views.Pets
     {
         private PetModel _model;
         private Window _window;
+        private PetCollision _collision;
 
         private double _screenWidth;
         private double _screenHeight;
 
-        public PetScreenCollider(PetModel model, Window window)
+        public PetScreenCollider(PetModel model, Window window, PetCollision collision)
         {
             _model = model;
             _window = window;
+            _collision = collision;
+
             ProvideUpdate.AddUpdateLate(this);
 
             _screenWidth = SystemParameters.WorkArea.Width;
@@ -25,38 +28,12 @@ namespace LifeinFile.Views.Pets
 
         public void OnUpdateLate()
         {
-            bool hitX = false;
-            bool hitY = false;
+            Rect screenRect = new Rect(0, 0, _screenWidth, _screenHeight);
 
-            if (_window.Left <= 0)
-            {
-                _window.Left = 0;
-                hitX = true;
-            }
-            else if (_window.Left + _window.Width >= _screenWidth)
-            {
-                _window.Left = _screenWidth - _window.Width;
-                hitX = true;
-            }
+            var result = CollisionHelper.CheckAndClamp(_window, screenRect);
 
-            if (_window.Top <= 0)
-            {
-                _window.Top = 0;
-                hitY = true;
-            }
-            else if (_window.Top + _window.Height >= _screenHeight)
-            {
-                _window.Top = _screenHeight - _window.Height;
-                hitY = true;
-            }
-
-            if (hitX || hitY)
-            {
-                float newVelX = hitX ? -_model.Velocity.X : _model.Velocity.X;
-                float newVelY = hitY ? -_model.Velocity.Y : _model.Velocity.Y;
-
-                _model.Velocity = new Vector2(newVelX, newVelY);
-            }
+            if (result.hitX || result.hitY)
+                _collision.OnCollision(result);
         }
     }
 }
