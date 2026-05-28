@@ -12,7 +12,7 @@ namespace LifeinFile.Core.Cage
         {
             CageModel model = new CageModel(initData.Name);
             CageExternal external = new CageExternal(model);
-            CageWindow window = new CageWindow(external);
+            CageWindow window = new CageWindow(model, external);
             window.Show();
             CageCollider collider = new CageCollider(model, window); ;
 
