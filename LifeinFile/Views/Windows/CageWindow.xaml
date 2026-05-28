@@ -6,7 +6,8 @@
         Width="400"
         WindowStyle="None" 
         AllowsTransparency="True" 
-        Background="White">
+        Background="White"
+        Topmost="True">
 
     <Border BorderBrush="Gray" BorderThickness="5" CornerRadius="10"/>
 </Window>

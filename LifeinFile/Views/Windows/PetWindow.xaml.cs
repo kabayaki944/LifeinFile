@@ -71,6 +71,7 @@ namespace Views.Windows
             _model.BelongCage?.Model.RemovePet(_external);
             //Petの所属ケージを更新
             _model.BelongCage = cage.External;
+            Owner = cage;
         }
 
         private void OutOfCage()
@@ -80,6 +81,7 @@ namespace Views.Windows
             _model.BelongCage?.Model.RemovePet(_external);
             //Petの所属ケージを更新
             _model.BelongCage = null;
+            Owner = null;
         }
     }
 }
