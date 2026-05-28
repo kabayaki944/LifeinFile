@@ -25,6 +25,7 @@ namespace LifeinFile.Core.Pets
             ProvideUpdate.AddUpdate(moveBrain);
             PetWindow window = new PetWindow(root);
             window.Show();
+            PetScreenCollider screenCollider = new PetScreenCollider(model, window);
             PetMoveDrive mover = new PetMoveDrive(model, window);
 
             return root;
