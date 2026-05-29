@@ -25,7 +25,7 @@ namespace LifeinFile.Controller.PetSystem
                     Microsoft.VisualBasic.FileIO.RecycleOption.SendToRecycleBin
                 );
                 //todo: ファイルのサイズによって変える
-                _model.Feed(20.0);
+                _model.AddHunger(20.0);
             }
         }
     }

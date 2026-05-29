@@ -7,13 +7,13 @@ using System.Windows;
 
 namespace LifeinFile.Controller.PetSystem
 {
-    public class LeftClickController
+    public class DragController
     {
         private readonly IWindowDriver _driver;
         private readonly IReadOnlyWindowModel _windowModel;
         private readonly PetExternal _external; 
 
-        public LeftClickController(
+        public DragController(
             PetModel model,
             IProvideMouseInput input, 
             IWindowDriver driver, 

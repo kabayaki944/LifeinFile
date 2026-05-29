@@ -9,12 +9,13 @@ using System.Windows;
 
 namespace LifeinFile.Controller.PetSystem
 {
-    public class HungerConsumer: IUpdate
+    public class GaugeConsumer: IUpdate
     {
         const double HUNGER_CONSUME_RATE = 0.05;
+        const double COM_CONSUME_RATE = 0.05;
 
         readonly PetModel _model;
-        public HungerConsumer(PetModel model)
+        public GaugeConsumer(PetModel model)
         {
             _model = model;
             ProvideUpdate.UpdateAsObservable
@@ -24,8 +25,9 @@ namespace LifeinFile.Controller.PetSystem
 
         public void OnUpdate()
         {
-            Debug.WriteLine($"Hunger before consuming: {_model.CurrentHunger}");
+            //Debug.WriteLine($"Hunger before consuming: {_model.CurrentHunger}");
             _model.ConsumeHunger(HUNGER_CONSUME_RATE);
+            _model.ConsumeCom(COM_CONSUME_RATE);
         }
     }
 }

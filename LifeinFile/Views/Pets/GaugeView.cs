@@ -5,11 +5,11 @@ using PetWindow = LifeinFile.Windows.PetWindow;
 
 namespace LifeinFile.Views.Pets
 {
-    public class HungerView: IUpdateLate
+    public class GaugeView: IUpdateLate
     {
         PetModel _model;
         PetWindow _window;
-        public HungerView(PetModel model, PetWindow window)
+        public GaugeView(PetModel model, PetWindow window)
         {
             _model = model;
             _window = window;
@@ -21,6 +21,7 @@ namespace LifeinFile.Views.Pets
         public void OnUpdateLate()
         {
             _window.HungerGauge.Value = _model.CurrentHunger;
+            _window.ComGauge.Value = _model.CurrentCom;
         }
     }
 }

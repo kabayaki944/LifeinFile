@@ -15,7 +15,7 @@ namespace LifeinFile.Models.Pets
         public Vector2 Velocity { get; set; }
 
         private PetExternal _external;
-        public CageExternal belongCage => PetCageConnecter.GetCageOfPet(_external);
+        public CageExternal BelongCage => PetCageConnecter.GetCageOfPet(_external);
         
         //---Reactive---//
         public CompositeDisposable Disposables{ get; }= new CompositeDisposable();
@@ -24,23 +24,36 @@ namespace LifeinFile.Models.Pets
         private const double MAX_HUNGER = 100.0;
         private double _currentHunger = MAX_HUNGER / 2f;
         public double CurrentHunger => _currentHunger;
+        
+        //---Communication---//
+        private const double MAX_COM = 100.0;
+        private double _currentCom = MAX_COM / 2f;
+        public double CurrentCom => _currentCom;
 
-        public void Feed(double amount)
+        public void AddHunger(double amount)
         {
             _currentHunger += amount;
             if (CurrentHunger > MAX_HUNGER)
-            {
                 _currentHunger = MAX_HUNGER;
-            }
+            
         }
-
         public void ConsumeHunger(double amount)
         {
             _currentHunger -= amount;
             if (CurrentHunger < 0)
-            {
                 _currentHunger = 0;
-            }
+        }
+        public void AddCom(double amount)
+        {
+            _currentCom += amount;
+            if (CurrentCom > MAX_COM)
+                _currentCom = MAX_COM;
+        }
+        public void ConsumeCom(double amount)
+        {
+            _currentCom -= amount;
+            if (CurrentCom < 0)
+                _currentCom = 0;
         }
 
         public PetModel(string name, Vector2 position, PetExternal external)
