@@ -1,8 +1,5 @@
 ﻿using LifeinFile.Models.Cages;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Views.Windows;
+using CageWindow = LifeinFile.Windows.CageWindow;
 
 namespace LifeinFile.Core.Cage
 {

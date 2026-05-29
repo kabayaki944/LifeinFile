@@ -2,11 +2,10 @@
 using LifeinFile.Core.Facade;
 using LifeinFile.Core.Pets;
 using LifeinFile.Models.Cages;
-using System;
 using System.Windows;
 using System.Windows.Input;
 
-namespace Views.Windows
+namespace LifeinFile.Windows
 {
     public partial class CageWindow : Window
     {

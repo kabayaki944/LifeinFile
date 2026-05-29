@@ -28,4 +28,16 @@
     <PackageReference Include="ReactiveProperty.WPF" Version="9.8.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="Windows\CageWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Windows\PetWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Windows\StartUpWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
 </Project>

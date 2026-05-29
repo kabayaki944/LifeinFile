@@ -1,11 +1,7 @@
 ﻿using LifeinFile.Helper;
 using LifeinFile.Models.Pets;
-using System;
-using System.Collections.Generic;
 using System.Numerics;
-using System.Text;
-using System.Windows;
-using Views.Windows;
+using PetWindow = LifeinFile.Windows.PetWindow;
 
 namespace LifeinFile.Views.Pets
 {

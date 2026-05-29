@@ -1,11 +1,7 @@
 ﻿using LifeinFile.Helper;
 using LifeinFile.Models.Pets;
 using Reactive.Bindings.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using Views.Windows;
+using PetWindow = LifeinFile.Windows.PetWindow;
 
 namespace LifeinFile.Views.Pets
 {

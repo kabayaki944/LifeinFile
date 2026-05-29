@@ -2,8 +2,7 @@
 using LifeinFile.Helper;
 using LifeinFile.Models.Pets;
 using LifeinFile.Views.Pets;
-
-using Views.Windows;
+using PetWindow = LifeinFile.Windows.PetWindow;
 
 namespace LifeinFile.Core.Pets
 {

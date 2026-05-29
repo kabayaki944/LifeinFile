@@ -2,7 +2,7 @@
 using LifeinFile.Models.Pets;
 using LifeinFile.Views.Pets;
 using System.Windows;
-using Views.Windows;
+using PetWindow = LifeinFile.Windows.PetWindow;
 
 namespace LifeinFile.Core.Pets
 {

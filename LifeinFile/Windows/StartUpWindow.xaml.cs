@@ -2,8 +2,7 @@
 using LifeinFile.Core.Pets;
 using System.Windows;
 
-
-namespace Views.Windows
+namespace LifeinFile.Windows
 {
     public partial class StartUpWindow : Window
     {

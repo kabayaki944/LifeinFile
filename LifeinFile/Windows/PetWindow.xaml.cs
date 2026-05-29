@@ -2,12 +2,10 @@
 using LifeinFile.Core.Facade;
 using LifeinFile.Core.Pets;
 using LifeinFile.Models.Pets;
-using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Views.Windows
+namespace LifeinFile.Windows
 {
     public partial class PetWindow : Window
     {
@@ -47,7 +45,7 @@ namespace Views.Windows
 
             foreach (Window window in Application.Current.Windows)
             {
-                if (window is CageWindow cage)
+                if (window is LifeinFile.Windows.CageWindow cage)
                 {
                     // ② ケージの範囲を「Rect（長方形）」として作る
                     Rect cageRect = new Rect(cage.Left, cage.Top, cage.Width, cage.Height);
