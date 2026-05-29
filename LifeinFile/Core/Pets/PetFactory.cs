@@ -21,7 +21,7 @@ namespace LifeinFile.Core.Pets
 
             PetExternal external = new PetExternal();
             PetRoot root = new PetRoot();
-            PetModel model = new PetModel(initData.Name, initData.Position);
+            PetModel model = new PetModel(initData.Name, initData.Position, external);
             PetMoveBrain moveBrain = new PetMoveBrain(model);
             ProvideUpdate.AddUpdate(moveBrain);
             PetWindow window = new PetWindow(root, external, model);

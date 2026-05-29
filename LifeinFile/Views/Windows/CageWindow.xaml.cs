@@ -1,4 +1,6 @@
 ﻿using LifeinFile.Core.Cage;
+using LifeinFile.Core.Facade;
+using LifeinFile.Core.Pets;
 using LifeinFile.Models.Cages;
 using System;
 using System.Windows;
@@ -44,18 +46,18 @@ namespace Views.Windows
             }
         }
 
-        // 2. ケージが動いた時にリアルタイムで呼ばれるイベント
+        //ドラッグ中のPetsの平行移動
         private void CageWindow_LocationChanged(object sender, EventArgs e)
         {
             // 今回ケージが動いた「差分（デルタ）」を計算
             double deltaX = this.Left - _lastLeft;
             double deltaY = this.Top - _lastTop;
 
-            // 3. 管理しているペットたちを同じ分だけ平行移動させる
-            // ※Model.Pets へのアクセス方法は現在の設計に合わせて調整してください
-            if (_model?.Pets != null)
+            IReadOnlyList<PetExternal> pets = PetCageConnecter.GetPetsInCage(External);
+
+            if (pets != null)
             {
-                foreach (var pet in _model.Pets)
+                foreach (var pet in pets)
                 {
                     // ペットが持っているウィンドウ（PetWindow）の座標を更新
                     if (pet.Window is Window petWindow)

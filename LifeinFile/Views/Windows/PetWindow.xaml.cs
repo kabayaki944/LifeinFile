@@ -1,4 +1,5 @@
 ﻿using LifeinFile.Controller.PetSystem;
+using LifeinFile.Core.Facade;
 using LifeinFile.Core.Pets;
 using LifeinFile.Models.Pets;
 using System.Diagnostics;
@@ -54,34 +55,13 @@ namespace Views.Windows
                     // ③ Rectの必殺技「Contains（含まれるか）」を使って一発で判定！
                     if (cageRect.Contains(petCenter))
                     {
-                        UpdateCage(cage);
+                        PetCageConnecter.MovePetToCage(_external, cage.External);
                         return;
                     }
                 }
             }
             // ケージの外にドロップ
-            OutOfCage();
-        }
-
-        private void UpdateCage(CageWindow cage)
-        {
-            //新しいケージに追加
-            cage.External.Model.AddPet(_external);
-            //古いケージから削除
-            _model.BelongCage?.Model.RemovePet(_external);
-            //Petの所属ケージを更新
-            _model.BelongCage = cage.External;
-            Owner = cage;
-        }
-
-        private void OutOfCage()
-        {
-            Debug.WriteLine("ケージの外にドロップされました");
-            //古いケージから削除
-            _model.BelongCage?.Model.RemovePet(_external);
-            //Petの所属ケージを更新
-            _model.BelongCage = null;
-            Owner = null;
+            PetCageConnecter.MovePetToOut(_external);
         }
     }
 }

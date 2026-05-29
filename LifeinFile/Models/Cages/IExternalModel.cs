@@ -7,9 +7,6 @@ namespace LifeinFile.Models.Cages
 {
     public interface IExternalModel
     {
-        public string Name { get;}
-        IReadOnlyList<PetExternal> Pets { get; }
-        public void AddPet(PetExternal pet);
-        public void RemovePet(PetExternal pet);
+        public string Name { get; }
     }
 }

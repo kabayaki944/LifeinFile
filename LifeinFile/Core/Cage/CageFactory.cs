@@ -10,11 +10,13 @@ namespace LifeinFile.Core.Cage
     {
         public static CageExternal Create(CageInitData initData)
         {
-            CageModel model = new CageModel(initData.Name);
-            CageExternal external = new CageExternal(model);
+            CageExternal external = new CageExternal();
+            CageModel model = new CageModel(initData.Name, external);
             CageWindow window = new CageWindow(model, external);
             window.Show();
-            CageCollider collider = new CageCollider(model, window); ;
+            CageCollider collider = new CageCollider(model, window);
+            external.Construct(model, window);
+
 
             return external;
         }
