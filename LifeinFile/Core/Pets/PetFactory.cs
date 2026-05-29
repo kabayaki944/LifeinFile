@@ -10,7 +10,7 @@ namespace LifeinFile.Core.Pets
     {
         static bool _isFirst = true;
 
-        public static PetFilesController Create(PetInitData initData)
+        public static DropFileController Create(PetInitData initData)
         {
             if(_isFirst)
             {
@@ -19,15 +19,18 @@ namespace LifeinFile.Core.Pets
             }
 
             PetExternal external = new PetExternal();
+            PetWindow window = new PetWindow();
+            window.Show();
+
             PetModel model = new PetModel(initData.Name, initData.Position, external);
 
-            PetFilesController filesController = new PetFilesController(model);
+            LeftClickController leftClickController = new LeftClickController(model,  window, window, window, external);
+
+            DropFileController filesController = new DropFileController(model, window);
             HungerConsumer hungerConsumer = new HungerConsumer(model);
             
             PetMoveBrain moveBrain = new PetMoveBrain(model);
 
-            PetWindow window = new PetWindow(filesController, external, model);
-            window.Show();
             
             HungerView hunger = new HungerView(model, window);
 

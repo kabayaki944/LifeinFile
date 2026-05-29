@@ -1,13 +1,9 @@
-﻿<Window x:Class="LifeinFile.Windows.CageWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="CageWindow"
-        Height="300"
-        Width="400"
-        WindowStyle="None" 
-        AllowsTransparency="True" 
-        Background="White"
-        Topmost="True">
+﻿<base:WindowBase x:Class="LifeinFile.Windows.CageWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:base="clr-namespace:LifeinFile.Windows"
+                 Title="Cage" Height="120" Width="100"
+                 WindowStyle="ToolWindow" AllowsTransparency="False" Background="White" Topmost="True">
 
     <Border BorderBrush="Gray" BorderThickness="5" CornerRadius="10"/>
-</Window>
+</base:WindowBase>

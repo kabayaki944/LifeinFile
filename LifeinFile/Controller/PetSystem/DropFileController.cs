@@ -1,16 +1,21 @@
 ﻿using LifeinFile.Models.Pets;
+using LifeinFile.Windows;
+using Reactive.Bindings.Extensions;
 
 namespace LifeinFile.Controller.PetSystem
 {
-    public class PetFilesController
+    public class DropFileController
     {
         PetModel _model;
-        public PetFilesController(PetModel model)
+        public DropFileController(PetModel model, IProvideWindowInput input)
         {
             _model = model;
+            input.OnFileDroppedAsObservable
+                .Subscribe(EatFiles)
+                .AddTo(model.Disposables);
         }
 
-        public void EatFiles(string[] files)
+        void EatFiles(string[] files)
         {
             foreach (string file in files)
             {
