@@ -11,7 +11,7 @@ namespace LifeinFile.Core.Pets
     {
         static bool _isFirst = true;
 
-        public static PetRoot Create(PetInitData initData)
+        public static PetFilesController Create(PetInitData initData)
         {
             if(_isFirst)
             {
@@ -20,19 +20,24 @@ namespace LifeinFile.Core.Pets
             }
 
             PetExternal external = new PetExternal();
-            PetRoot root = new PetRoot();
             PetModel model = new PetModel(initData.Name, initData.Position, external);
+
+            PetFilesController filesController = new PetFilesController(model);
+            HungerConsumer hungerConsumer = new HungerConsumer(model);
+            
             PetMoveBrain moveBrain = new PetMoveBrain(model);
             ProvideUpdate.AddUpdate(moveBrain);
-            PetWindow window = new PetWindow(root, external, model);
+
+            PetWindow window = new PetWindow(filesController, external, model);
             window.Show();
+            
             PetCollision collision = new PetCollision(model, window);
             PetScreenCollider screenCollider = new PetScreenCollider(model, window, collision);
             PetMoveDrive mover = new PetMoveDrive(model, window);
             
             external.Construct(model, collision, window);
 
-            return root;
+            return filesController;
         }
     }
 }

@@ -11,10 +11,10 @@ namespace Views.Windows
 {
     public partial class PetWindow : Window
     {
-        PetRoot _root;
+        PetFilesController _root;
         PetExternal _external;
         PetModel _model;
-        public PetWindow(PetRoot root, PetExternal external, PetModel model)
+        public PetWindow(PetFilesController root, PetExternal external, PetModel model)
         {
             InitializeComponent();
             _root = root;
