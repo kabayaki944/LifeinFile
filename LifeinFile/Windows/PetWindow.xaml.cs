@@ -25,5 +25,25 @@ namespace LifeinFile.Windows
             HungerGauge.Visibility = Visibility.Hidden;
             ComGauge.Visibility = Visibility.Hidden;
         }
+
+        public (double scaleX, double scaleY) GetScale() => (PetScale.ScaleX, PetScale.ScaleY);
+        public (double x, double y) GetTrans() => (PetTranslate.X, PetTranslate.Y);
+
+        public void SetTrans(double x, double y)
+        {
+            PetTranslate.X = x;
+            PetTranslate.Y = y;
+        }
+        public void SetScale(double x, double y)
+        {
+            PetScale.ScaleX = x;
+            PetScale.ScaleY = y;
+        }
+
+        public void ChangeScale(double amountX, double amountY)
+        {
+            PetScale.ScaleX += amountX;
+            PetScale.ScaleY += amountY;
+        }
     }
 }

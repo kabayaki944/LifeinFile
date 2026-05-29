@@ -5,9 +5,16 @@
                  Title="Pet" Height="120" Width="100"
                  WindowStyle="None" AllowsTransparency="True" Background="Transparent" Topmost="True">
     
-    <Grid MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" Background="Transparent">
+    <Grid MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" Background="#01000000">
 
-        <Image Source="/Assets/Graphic/Pets/TestCat.png" Margin="0,20,0,0" />
+        <Image Source="/Assets/Graphic/Pets/TestCat.png" Margin="0,20,0,0" RenderTransformOrigin="0.5,1.0">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform x:Name="PetScale" ScaleX="1.0" ScaleY="1.0" />
+                    <TranslateTransform x:Name="PetTranslate" X="0" Y="0" />
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
 
         <ProgressBar x:Name="HungerGauge" 
                      Width="60" Height="10" 

@@ -31,10 +31,10 @@ namespace LifeinFile.Core.Pets
             GaugeConsumer gaugeConsumer = new GaugeConsumer(model);
             
             PetMoveBrain moveBrain = new PetMoveBrain(model);
-
             
             GaugeView gauge = new GaugeView(model, window);
-
+            PetMoveTrans moveTrans = new PetMoveTrans(model, window);
+            
             PetCollision collision = new PetCollision(model, window);
             PetScreenCollider screenCollider = new PetScreenCollider(model, window, collision);
             PetMoveDrive mover = new PetMoveDrive(model, window);
