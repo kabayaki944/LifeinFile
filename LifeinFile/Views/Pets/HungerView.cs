@@ -1,5 +1,6 @@
 ﻿using LifeinFile.Helper;
 using LifeinFile.Models.Pets;
+using Reactive.Bindings.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,7 +17,9 @@ namespace LifeinFile.Views.Pets
         {
             _model = model;
             _window = window;
-            ProvideUpdate.AddUpdateLate(this);
+            ProvideUpdate.LateUpdateAsObservable
+                .Subscribe(_ => OnUpdateLate())
+                .AddTo(_model.Disposables);
         }
 
         public void OnUpdateLate()

@@ -1,5 +1,6 @@
 ﻿using LifeinFile.Helper;
 using LifeinFile.Models.Pets;
+using Reactive.Bindings.Extensions;
 using System.Numerics;
 using System.Windows;
 
@@ -19,8 +20,10 @@ namespace LifeinFile.Views.Pets
             _model = model;
             _window = window;
             _collision = collision;
-
-            ProvideUpdate.AddUpdateLate(this);
+            
+            ProvideUpdate.LateUpdateAsObservable
+                .Subscribe(_ => OnUpdateLate())
+                .AddTo(_model.Disposables);
 
             _screenWidth = SystemParameters.WorkArea.Width;
             _screenHeight = SystemParameters.WorkArea.Height;

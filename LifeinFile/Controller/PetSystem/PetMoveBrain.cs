@@ -1,5 +1,6 @@
 ﻿using LifeinFile.Helper;
 using LifeinFile.Models.Pets;
+using Reactive.Bindings.Extensions;
 using System.Numerics;
 
 namespace LifeinFile.Controller.PetSystem
@@ -28,12 +29,14 @@ namespace LifeinFile.Controller.PetSystem
         public PetMoveBrain(PetModel model)
         {
             _model = model;
-            ProvideUpdate.AddUpdate(this);
+            ProvideUpdate.UpdateAsObservable
+                .Subscribe(_ => OnUpdate())
+                .AddTo(model.Disposables);
 
             Start();
         }
 
-        public void Start()
+        void Start()
         {
             UpdateMoveData();
         }

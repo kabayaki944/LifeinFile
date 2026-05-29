@@ -26,7 +26,6 @@ namespace LifeinFile.Core.Pets
             HungerConsumer hungerConsumer = new HungerConsumer(model);
             
             PetMoveBrain moveBrain = new PetMoveBrain(model);
-            ProvideUpdate.AddUpdate(moveBrain);
 
             PetWindow window = new PetWindow(filesController, external, model);
             window.Show();

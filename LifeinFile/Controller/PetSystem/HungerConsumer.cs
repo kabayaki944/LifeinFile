@@ -1,5 +1,6 @@
 ﻿using LifeinFile.Helper;
 using LifeinFile.Models.Pets;
+using Reactive.Bindings.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,11 +13,13 @@ namespace LifeinFile.Controller.PetSystem
     {
         const double HUNGER_CONSUME_RATE = 0.05;
 
-        PetModel _model;
+        readonly PetModel _model;
         public HungerConsumer(PetModel model)
         {
             _model = model;
-            ProvideUpdate.AddUpdate(this);
+            ProvideUpdate.UpdateAsObservable
+                .Subscribe(_ =>OnUpdate())
+                .AddTo(model.Disposables);
         }
 
         public void OnUpdate()

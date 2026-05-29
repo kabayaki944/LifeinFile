@@ -1,6 +1,7 @@
 ﻿using LifeinFile.Core.Cage;
 using LifeinFile.Core.Facade;
 using LifeinFile.Core.Pets;
+using Reactive.Bindings.Disposables;
 using System.ComponentModel;
 using System.Numerics;
 
@@ -15,6 +16,9 @@ namespace LifeinFile.Models.Pets
 
         private PetExternal _external;
         public CageExternal belongCage => PetCageConnecter.GetCageOfPet(_external);
+        
+        //---Reactive---//
+        public CompositeDisposable Disposables{ get; }= new CompositeDisposable();
 
         //---Hunger---//
         private const double MAX_HUNGER = 100.0;

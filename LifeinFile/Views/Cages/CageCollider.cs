@@ -1,5 +1,6 @@
 ﻿using LifeinFile.Helper;
 using LifeinFile.Models.Cages;
+using Reactive.Bindings.Extensions;
 using System.Diagnostics;
 using System.Windows;
 
@@ -15,7 +16,9 @@ namespace LifeinFile.Core.Cage
         {
             _model = cageModel;
             _window = cageWindow;
-            ProvideUpdate.AddUpdateLate(this); // タイマーに登録
+            ProvideUpdate.LateUpdateAsObservable
+                .Subscribe(_ => OnUpdateLate())
+                .AddTo(_model.Disposables);
         }
 
         public void OnUpdateLate()
