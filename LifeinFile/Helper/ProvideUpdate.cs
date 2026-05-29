@@ -1,4 +1,5 @@
-﻿using System.Windows.Threading;
+﻿using System.Reactive;
+using System.Windows.Threading;
 
 namespace LifeinFile.Helper
 {
@@ -11,6 +12,10 @@ namespace LifeinFile.Helper
         static List<IUpdate> _updates = new List<IUpdate>();
         static List<IUpdateLate> _updateLates = new List<IUpdateLate>();
 
+        static IObservable<Unit> OnUpdate { get; }
+        static IObservable<Unit> OnUpdateLate { get; }
+        
+        
         public static void Start()
         {
             _timer.Interval = TimeSpan.FromMilliseconds(TICK_INTERVAL);

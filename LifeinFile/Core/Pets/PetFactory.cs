@@ -31,6 +31,8 @@ namespace LifeinFile.Core.Pets
             PetWindow window = new PetWindow(filesController, external, model);
             window.Show();
             
+            HungerView hunger = new HungerView(model, window);
+
             PetCollision collision = new PetCollision(model, window);
             PetScreenCollider screenCollider = new PetScreenCollider(model, window, collision);
             PetMoveDrive mover = new PetMoveDrive(model, window);

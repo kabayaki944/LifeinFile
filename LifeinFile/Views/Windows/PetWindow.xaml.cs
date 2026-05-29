@@ -63,5 +63,17 @@ namespace Views.Windows
             // ケージの外にドロップ
             PetCageConnecter.MovePetToOut(_external);
         }
+        private void Grid_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            // ゲージを表示する
+            HungerGauge.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        // カーソルがPet（Grid）から外れた時
+        private void Grid_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            // ゲージを隠す
+            HungerGauge.Visibility = System.Windows.Visibility.Hidden;
+        }
     }
 }

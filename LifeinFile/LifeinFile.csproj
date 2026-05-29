@@ -24,4 +24,8 @@
     <None Include="C:\GitHub\LifeinFile\LifeinFile\.editorconfig" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="ReactiveProperty.WPF" Version="9.8.0" />
+  </ItemGroup>
+
 </Project>

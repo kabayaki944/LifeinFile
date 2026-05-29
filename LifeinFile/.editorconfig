@@ -49,8 +49,7 @@ dotnet_style_parentheses_in_other_operators = never_if_unnecessary
 dotnet_style_parentheses_in_relational_binary_operators = always_for_clarity
 
 # 修飾子設定
-dotnet_style_require_accessibility_modifiers = for_non_interface_members
-
+dotnet_style_require_accessibility_modifiers = omit_if_default
 # 式レベルの設定
 dotnet_prefer_system_hash_code = true
 dotnet_style_coalesce_expression = true
