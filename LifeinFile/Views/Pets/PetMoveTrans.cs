@@ -3,6 +3,7 @@ using LifeinFile.Models.Pets;
 using LifeinFile.Windows;
 using Reactive.Bindings.Extensions;
 using System.Diagnostics;
+using System.Numerics;
 
 namespace LifeinFile.Views.Pets
 {
@@ -44,27 +45,25 @@ namespace LifeinFile.Views.Pets
             }
             
             _window.SetTrans(0, CalcTransY());
-            var scale = CalcScale();
-            _window.SetScale(scale.x, scale.y);
+            if(_model.Velocity != Vector2.Zero)
+            {
+                var scale = CalcScale();
+                Debug.WriteLine($"Move Set {scale.x}");
+                _window.SetScale(scale.x, scale.y);
+            }
             //_window.SetScale(CalcScaleX(), CalcScaleY());
         }
 
         (double x, double y) CalcScale()
         {
-            const double sensibility = 0.1;
-
-            double z = Math.Sin(x) * sensibility;
-
-            double resultX = 1d + z ;
-            double resultY = 1d - z;
+            const double sensibility = 0.07;
             
-            //Debug.WriteLine("ScaleX" + z);
-            return (resultX, resultY);
+            return ScaleHelper.GetSlimeScale(x, sensibility);
         } 
 
         private double CalcTransY()
         { 
-            const double offsetY = 0.6;
+            const double offsetY = 0.3;
             const double epsilon = 0.01;
             const double sensibility = 15;
             

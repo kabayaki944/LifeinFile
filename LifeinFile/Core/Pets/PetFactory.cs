@@ -33,6 +33,8 @@ namespace LifeinFile.Core.Pets
             PetMoveBrain moveBrain = new PetMoveBrain(model);
             
             GaugeView gauge = new GaugeView(model, window);
+            
+            BreathAnimation breathAnimation = new BreathAnimation(model, window);
             PetMoveTrans moveTrans = new PetMoveTrans(model, window);
             
             PetCollision collision = new PetCollision(model, window);
