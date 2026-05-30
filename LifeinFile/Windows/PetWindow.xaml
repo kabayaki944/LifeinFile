@@ -3,7 +3,11 @@
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:base="clr-namespace:LifeinFile.Windows"
                  Title="Pet" Height="120" Width="100"
-                 WindowStyle="None" AllowsTransparency="True" Background="Transparent" Topmost="True">
+                 WindowStyle="None"
+                 AllowsTransparency="True" 
+                 Background="Transparent"
+                 Topmost="True"
+                 ResizeMode="NoResize">
     
     <Grid MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" Background="#01000000">
 
