@@ -22,7 +22,7 @@ namespace LifeinFile.Views.Pets.Animations
             _targetValues = new double[Count];
             _easingValues = new double[Count];
             
-            OnEnter(context);
+            OnStart(context);
             _startValues = GetStartValues(); // 派生クラスで StartValues に初期値を詰めてもらう
         }
 

@@ -2,7 +2,6 @@
 using LifeinFile.Core.Facade;
 using LifeinFile.Core.Pets;
 using Reactive.Bindings.Disposables;
-using System.ComponentModel;
 using System.Numerics;
 
 namespace LifeinFile.Models.Pets

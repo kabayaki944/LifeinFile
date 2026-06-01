@@ -19,11 +19,14 @@ namespace LifeinFile.Views.Pets
             _model = model;
             _window = window;
             _windowModel = windowModel;
+            /*
             ProvideUpdate.LateUpdateAsObservable
                 .Subscribe(_ => OnUpdateLate())
                 .AddTo(model.Disposables);
+                */
         }
 
+        /*
         const double SPEED = 0.2;
         // const double SENSIBILITY = 0.03;
         Vector2 _oldVelocity =  Vector2.Zero;
@@ -43,10 +46,11 @@ namespace LifeinFile.Views.Pets
             }
             _oldVelocity = _model.Velocity;
         }
+        */
 
         //新
         protected override int Count { get; set; } = 2;
-        protected override double Frequency { get; set; } = 0.2;
+        protected override double Frequency { get; set; } = 2;
         const double SENSIBILITY = 0.03;
 
         
@@ -73,6 +77,7 @@ namespace LifeinFile.Views.Pets
 
         protected override void ApplyToView(double[] currentValues)
         {
+            Debug.WriteLine($"ApplyToView {currentValues[0]}");
             _window.SetScale(currentValues[0], currentValues[1]);
         }
     }

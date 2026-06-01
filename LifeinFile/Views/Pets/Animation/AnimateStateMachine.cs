@@ -1,6 +1,7 @@
 using LifeinFile.Helper;
+using LifeinFile.Views.Pets.Animations;
+using Reactive.Bindings.Disposables;
 using Reactive.Bindings.Extensions;
-using System.Reactive.Disposables;
 
 namespace LifeinFile.Views.Pets
 {
@@ -10,10 +11,11 @@ namespace LifeinFile.Views.Pets
         CompositeDisposable _animationDisposables = new CompositeDisposable();
         public void SetAnimation(AnimationBase animation)
         {
+            if(animation == _currentAnimation) return;
+            
             _animationDisposables.Clear();
             UpdateContext();
             
-            _currentAnimation?.OnExit();
             _currentAnimation = animation;
             _currentAnimation.OnEnter(_context);
         }
@@ -36,8 +38,6 @@ namespace LifeinFile.Views.Pets
             CompositeDisposable disposables = new CompositeDisposable()
                 .AddTo(_userDisposables)
                 .AddTo(_animationDisposables);
-            
-            _context.Disposables =  disposables;
         }
     }
 }

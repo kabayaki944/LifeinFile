@@ -34,8 +34,11 @@ namespace LifeinFile.Core.Pets
             
             GaugeView gauge = new GaugeView(model, window);
             
-            BreathAnimation breathAnimation = new BreathAnimation(model, window);
-            PetMoveTrans moveTrans = new PetMoveTrans(model, window);
+            PetAnimationsCreator creator = new PetAnimationsCreator(model, window);
+            AnimationContext animationContext = new AnimationContext();
+            AnimateStateMachine stateMachine =
+                new AnimateStateMachine(model.Disposables, creator.Breath, animationContext);
+            PetAnimationController animationController = new PetAnimationController(model, stateMachine, creator);
             
             PetCollision collision = new PetCollision(model, window);
             PetScreenCollider screenCollider = new PetScreenCollider(model, window, collision);
