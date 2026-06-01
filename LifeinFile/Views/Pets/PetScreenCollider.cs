@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace LifeinFile.Views.Pets
 {
-    public class PetScreenCollider : IUpdateLate
+    public class PetScreenCollider
     {
         private PetModel _model;
         private Window _window;

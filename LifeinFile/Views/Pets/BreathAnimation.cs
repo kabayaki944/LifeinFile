@@ -1,5 +1,6 @@
 using LifeinFile.Helper;
 using LifeinFile.Models.Pets;
+using LifeinFile.Views.Pets.Animations;
 using LifeinFile.Windows;
 using Reactive.Bindings.Extensions;
 using System.Diagnostics;
@@ -8,21 +9,23 @@ using Vector = System.Windows.Vector;
 
 namespace LifeinFile.Views.Pets
 {
-    public class BreathAnimation
+    public class BreathAnimation: AnimationBase
     {
         PetModel _model;
         PetWindow _window;
-        public BreathAnimation(PetModel model, PetWindow window)
+        IReadOnlyWindowModel _windowModel;
+        public BreathAnimation(PetModel model, PetWindow window, IReadOnlyWindowModel windowModel)
         {
             _model = model;
             _window = window;
+            _windowModel = windowModel;
             ProvideUpdate.LateUpdateAsObservable
                 .Subscribe(_ => OnUpdateLate())
                 .AddTo(model.Disposables);
         }
 
         const double SPEED = 0.2;
-        const double SENSIBILITY = 0.03;
+        // const double SENSIBILITY = 0.03;
         Vector2 _oldVelocity =  Vector2.Zero;
 
         double _currentX = 0;
@@ -39,6 +42,38 @@ namespace LifeinFile.Views.Pets
                 _window.SetScale(result.x, result.y);
             }
             _oldVelocity = _model.Velocity;
+        }
+
+        //新
+        protected override int Count { get; set; } = 2;
+        protected override double Frequency { get; set; } = 0.2;
+        const double SENSIBILITY = 0.03;
+
+        
+        protected override void OnStart(AnimationContext context) { }
+        protected override double[] GetStartValues()
+        {
+            var scale = _window.GetScale();
+            return  new double[]
+            {
+                scale.scaleX,
+                scale.scaleY
+            };
+        }
+
+        protected override double[] CalculateTargets(double phase)
+        {
+            var result = ScaleHelper.GetSlimeScale(phase, SENSIBILITY);
+            return new double[]
+            {
+                result.x,
+                result.y
+            };
+        }
+
+        protected override void ApplyToView(double[] currentValues)
+        {
+            _window.SetScale(currentValues[0], currentValues[1]);
         }
     }
 }

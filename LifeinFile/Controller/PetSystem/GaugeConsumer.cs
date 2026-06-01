@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace LifeinFile.Controller.PetSystem
 {
-    public class GaugeConsumer: IUpdate
+    public class GaugeConsumer
     {
         const double HUNGER_CONSUME_RATE = 0.05;
         const double COM_CONSUME_RATE = 0.05;

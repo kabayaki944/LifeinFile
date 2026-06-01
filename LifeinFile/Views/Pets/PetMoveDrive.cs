@@ -5,7 +5,7 @@ using System.Windows;
 
 namespace LifeinFile.Views.Pets
 {
-    class PetMoveDrive: IUpdateLate
+    class PetMoveDrive
     {
         PetModel _model;
         Window _window;

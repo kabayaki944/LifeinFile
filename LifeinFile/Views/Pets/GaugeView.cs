@@ -5,7 +5,7 @@ using PetWindow = LifeinFile.Windows.PetWindow;
 
 namespace LifeinFile.Views.Pets
 {
-    public class GaugeView: IUpdateLate
+    public class GaugeView
     {
         PetModel _model;
         PetWindow _window;

@@ -11,7 +11,7 @@ namespace LifeinFile.Controller.PetSystem
         public double duration;
     }
 
-    public class PetMoveBrain: IUpdate
+    public class PetMoveBrain
     {
         const int MAX_IDLE_DURATION = 60;
         const int MIN_IDLE_DURATION = 20;

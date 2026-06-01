@@ -11,7 +11,7 @@ namespace LifeinFile.Windows
             InitializeComponent();
 
             PetInitData initData = new PetInitData("Test", new System.Numerics.Vector2(100, 100));
-            for(int i =0; i < 10; i++)
+            for(int i =0; i < 30; i++)
                 PetFactory.Create(initData);
             CageInitData cageInitData1 = new CageInitData("Cage1");
             CageInitData cageInitData2 = new CageInitData("Cage2");

@@ -7,7 +7,7 @@ using System.Windows;
 namespace LifeinFile.Core.Cage
 {
     // Cageが持っているPetたちを監視するクラス
-    public class CageCollider : IUpdateLate
+    public class CageCollider
     {
         private CageModel _model;
         private Window _window;

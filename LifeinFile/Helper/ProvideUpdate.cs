@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reactive;
 using System.Reactive.Subjects;
 using System.Windows.Threading;
 
@@ -11,18 +10,18 @@ namespace LifeinFile.Helper
 
         static DispatcherTimer _timer = new DispatcherTimer();
 
-        // 【追加】Rxの心臓部。イベントを発火するスイッチ（Subject）
-        // Unit は「値を持たない純粋な通知」という意味です（voidのRx版）
-        private static readonly Subject<Unit> _updateSubject = new Subject<Unit>();
-        private static readonly Subject<Unit> _lateUpdateSubject = new Subject<Unit>();
+        private static readonly Subject<double> _updateSubject = new Subject<double>();
+        private static readonly Subject<double> _lateUpdateSubject = new Subject<double>();
 
-        // 【追加】外部に公開するストリーム。外のクラスはこれをSubscribe（購読）する
-        // Subjectをそのまま公開すると外から勝手に発火されてしまうため、IObservableとして隠蔽します
-        public static IObservable<Unit> UpdateAsObservable => _updateSubject;
-        public static IObservable<Unit> LateUpdateAsObservable => _lateUpdateSubject;
+        public static IObservable<double> UpdateAsObservable => _updateSubject;
+        public static IObservable<double> LateUpdateAsObservable => _lateUpdateSubject;
+
+        private static DateTime _lastTime;
 
         public static void Start()
         {
+            _lastTime = DateTime.Now;
+
             _timer.Interval = TimeSpan.FromMilliseconds(TICK_INTERVAL);
             _timer.Tick += (s, e) => OnTick();
             _timer.Start();
@@ -30,11 +29,13 @@ namespace LifeinFile.Helper
 
         static void OnTick()
         {
-            // 購読している全員（PetModelなど）に「Updateのタイミングだよ！」と一斉通知
-            _updateSubject.OnNext(Unit.Default);
+            DateTime now = DateTime.Now;
+            double deltaTime = (now - _lastTime).TotalSeconds;
+            
+            _lastTime = now;
 
-            // 続けて「LateUpdateだよ！」と通知
-            _lateUpdateSubject.OnNext(Unit.Default);
+            _updateSubject.OnNext(deltaTime);
+            _lateUpdateSubject.OnNext(deltaTime);
         }
     }
 }
