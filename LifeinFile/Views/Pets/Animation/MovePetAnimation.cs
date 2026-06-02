@@ -8,40 +8,20 @@ using System.Numerics;
 
 namespace LifeinFile.Views.Pets
 {
-    public class MoveAnimation: AnimationBase
+    public class MovePetAnimation: PetAnimationBase
     {
         PetModel _model;
-        PetWindow _window;
-        
         // 独自に位相を管理するための変数（名前を分かりやすく _animX としました）
         double _animX = 0;
-
-        protected override int Count { get; set; } = 3; 
         protected override double Frequency { get; set; } = 1.0;
 
-        public MoveAnimation(PetModel model, PetWindow window)
+        public MovePetAnimation(PetModel model, PetWindow window) : base(window)
         {
             _model = model;
-            _window = window;
         }
 
         protected override void OnStart(AnimationContext context) { }
-
-        protected override double[] GetStartValues()
-        {
-            // アニメーション開始時の現在値を取得（Easing補間のため）
-            var scale = _window.GetScale();
-            var trans = _window.GetTrans(); // ※PetWindow側に GetTrans() が必要です
-            
-            return new double[]
-            {
-                trans.y, // [0] TransY
-                scale.scaleX, // [1] ScaleX
-                scale.scaleY  // [2] ScaleY
-            };
-        }
-
-        protected override double[] CalculateTargets(double phase)
+        protected override void UpdateTargets(double[] targets, double phase)
         {
             // 💡 移動アニメーションは時間(phase)ではなく速度(Velocity)に依存するため、
             // 引数の phase は使わず、独自管理の _animX を更新します。
@@ -55,24 +35,9 @@ namespace LifeinFile.Views.Pets
             double targetTransY = CalcTransY();
             var targetScale = CalcScale();
 
-            return new double[]
-            {
-                targetTransY,
-                targetScale.x,
-                targetScale.y
-            };
-        }
-
-        protected override void ApplyToView(double[] currentValues)
-        {
-            // Lerp された値を受け取って Window に反映
-            // currentValues[0] = TransY, [1] = ScaleX, [2] = ScaleY
-            
-            _window.SetTrans(0, currentValues[0]);
-            
-            // 元のコードでは速度0の時に Scale を更新していませんでしたが、
-            // AnimationBase の仕様上、停止時も滑らかに元の形に戻るように毎フレーム適用させています。
-            _window.SetScale(currentValues[1], currentValues[2]);
+            targets[IDX_TRANS_Y] = targetTransY;
+            targets[IDX_SCALE_X] = targetScale.x;
+            targets[IDX_SCALE_Y] = targetScale.y;
         }
 
         private (double x, double y) CalcScale()

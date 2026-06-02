@@ -26,7 +26,7 @@ namespace LifeinFile.Windows
             ComGauge.Visibility = Visibility.Hidden;
         }
 
-        public (double scaleX, double scaleY) GetScale() => (PetScale.ScaleX, PetScale.ScaleY);
+        public (double x, double y) GetScale() => (PetScale.ScaleX, PetScale.ScaleY);
         public (double x, double y) GetTrans() => (PetTranslate.X, PetTranslate.Y);
 
         public void SetTrans(double x, double y)

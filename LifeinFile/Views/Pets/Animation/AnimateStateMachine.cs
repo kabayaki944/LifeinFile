@@ -7,30 +7,30 @@ namespace LifeinFile.Views.Pets
 {
     public class AnimateStateMachine
     {
-        AnimationBase _currentAnimation; 
+        PetAnimationBase _currentPetAnimation; 
         CompositeDisposable _animationDisposables = new CompositeDisposable();
-        public void SetAnimation(AnimationBase animation)
+        public void SetAnimation(PetAnimationBase petAnimation)
         {
-            if(animation == _currentAnimation) return;
+            if(petAnimation == _currentPetAnimation) return;
             
             _animationDisposables.Clear();
             UpdateContext();
             
-            _currentAnimation = animation;
-            _currentAnimation.OnEnter(_context);
+            _currentPetAnimation = petAnimation;
+            _currentPetAnimation.OnEnter(_context);
         }
 
         AnimationContext _context;
         CompositeDisposable _userDisposables;
-        public AnimateStateMachine(CompositeDisposable userDisposables, AnimationBase animation, AnimationContext animationContext)
+        public AnimateStateMachine(CompositeDisposable userDisposables, PetAnimationBase petAnimation, AnimationContext animationContext)
         {
             _userDisposables = userDisposables;
             _context = animationContext;
             
             ProvideUpdate.LateUpdateAsObservable
-                .Subscribe(dt => _currentAnimation?.OnUpdate(dt))
+                .Subscribe(dt => _currentPetAnimation?.OnUpdate(dt))
                 .AddTo(userDisposables);
-            SetAnimation(animation);
+            SetAnimation(petAnimation);
         }
 
         void UpdateContext()

@@ -37,7 +37,7 @@ namespace LifeinFile.Core.Pets
             PetAnimationsCreator creator = new PetAnimationsCreator(model, window);
             AnimationContext animationContext = new AnimationContext();
             AnimateStateMachine stateMachine =
-                new AnimateStateMachine(model.Disposables, creator.Breath, animationContext);
+                new AnimateStateMachine(model.Disposables, creator.BreathPet, animationContext);
             PetAnimationController animationController = new PetAnimationController(model, stateMachine, creator);
             
             PetCollision collision = new PetCollision(model, window);

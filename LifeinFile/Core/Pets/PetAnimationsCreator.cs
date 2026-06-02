@@ -15,15 +15,15 @@ namespace LifeinFile.Views.Pets
             Create();
         }
 
-        MoveAnimation _move;
-        BreathAnimation _breath;
+        MovePetAnimation _movePet;
+        BreathPetAnimation _breathPet;
         
-        public MoveAnimation Move => _move;
-        public BreathAnimation Breath => _breath;
+        public MovePetAnimation MovePet => _movePet;
+        public BreathPetAnimation BreathPet => _breathPet;
         void Create()
         {
-            _move = new MoveAnimation(_model, _window);
-            _breath = new BreathAnimation(_model, _window, _window);
+            _movePet = new MovePetAnimation(_model, _window);
+            _breathPet = new BreathPetAnimation(_model, _window, _window);
         }
     }
 }
