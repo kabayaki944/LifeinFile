@@ -23,9 +23,10 @@ namespace LifeinFile.Views.Pets
             _window.Top = result.newY;
 
             // 速度の反転
-            float newVelX = result.hitX ? -_model.Velocity.X : _model.Velocity.X;
-            float newVelY = result.hitY ? -_model.Velocity.Y : _model.Velocity.Y;
-            _model.Velocity = new Vector2(newVelX, newVelY);
+            float newVelX = result.hitX ? -_model.Velocity.Value.X : _model.Velocity.Value.X;
+            float newVelY = result.hitY ? -_model.Velocity.Value.Y : _model.Velocity.Value.Y;
+            _model.Velocity.Value = new Vector2(newVelX, newVelY);
+            _model.UpdateDirectionByVelocity();
         }
     }
 }

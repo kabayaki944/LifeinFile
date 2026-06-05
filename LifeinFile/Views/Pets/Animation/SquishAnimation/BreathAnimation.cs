@@ -5,11 +5,11 @@ using LifeinFile.Windows;
 
 namespace LifeinFile.Views.Pets
 {
-    public class BreathPetAnimation: PetAnimationBase
+    public class BreathAnimation: SquishAnimationBase
     {
         PetModel _model;
         IReadOnlyWindowModel _windowModel;
-        public BreathPetAnimation(PetModel model, PetWindow window, IReadOnlyWindowModel windowModel) : base(window)
+        public BreathAnimation(PetModel model, IPetWindow window, IReadOnlyWindowModel windowModel) : base(window)
         {
             _model = model;
             _windowModel = windowModel;

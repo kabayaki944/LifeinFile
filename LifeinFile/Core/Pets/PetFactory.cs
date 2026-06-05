@@ -2,6 +2,7 @@
 using LifeinFile.Helper;
 using LifeinFile.Models.Pets;
 using LifeinFile.Views.Pets;
+using LifeinFile.Views.Pets.Animation.DirectionAnimation;
 using PetWindow = LifeinFile.Windows.PetWindow;
 
 namespace LifeinFile.Core.Pets
@@ -36,9 +37,15 @@ namespace LifeinFile.Core.Pets
             
             PetAnimationsCreator creator = new PetAnimationsCreator(model, window);
             AnimationContext animationContext = new AnimationContext();
-            AnimateStateMachine stateMachine =
-                new AnimateStateMachine(model.Disposables, creator.BreathPet, animationContext);
-            PetAnimationController animationController = new PetAnimationController(model, stateMachine, creator);
+            
+            AnimateStateMachine squishStateMachine =
+                new AnimateStateMachine(model.Disposables, creator.Breath, animationContext);
+            SquishAnimationController squishAnimationController = new SquishAnimationController(model, squishStateMachine, creator);
+            
+            AnimateStateMachine directionStateMachine =
+                new AnimateStateMachine(model.Disposables, animationContext);
+            DirectionAnimationController directionAnimationController = new DirectionAnimationController(model, directionStateMachine, creator);
+            
             
             PetCollision collision = new PetCollision(model, window);
             PetScreenCollider screenCollider = new PetScreenCollider(model, window, collision);

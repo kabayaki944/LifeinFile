@@ -16,12 +16,17 @@ namespace LifeinFile.Views.Pets
             ProvideUpdate.LateUpdateAsObservable
                 .Subscribe(_ => OnUpdateLate())
                 .AddTo(_model.Disposables);
+            model.Velocity
+                .Subscribe(_ =>OnChnage())
+                .AddTo(_model.Disposables);
         }
 
-        public void OnUpdateLate()
+        void OnChnage() => _model.UpdateDirectionByVelocity();
+
+        void OnUpdateLate()
         {
-            _window.Left += _model.Velocity.X;
-            _window.Top += _model.Velocity.Y;
+            _window.Left += _model.Velocity.Value.X;
+            _window.Top += _model.Velocity.Value.Y;
         }
     }
 }

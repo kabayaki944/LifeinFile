@@ -14,7 +14,8 @@
         <Image Source="/Assets/Graphic/Pets/Cat_ElementaryBody.png" Margin="0,20,0,0" RenderTransformOrigin="0.5,1.0">
             <Image.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform x:Name="PetScale" ScaleX="1.0" ScaleY="1.0" />
+                    <ScaleTransform x:Name="SquishScale" ScaleX="1.0" ScaleY="1.0" />
+                    <ScaleTransform x:Name="DirectionScale" ScaleX="1.0" ScaleY="1.0" />
                     <TranslateTransform x:Name="PetTranslate" X="0" Y="0" />
                 </TransformGroup>
             </Image.RenderTransform>

@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace LifeinFile.Windows
 {
-    public partial class PetWindow : WindowBase
+    public partial class PetWindow : WindowBase, IPetWindow
     {
         public PetWindow()
         {
@@ -26,7 +26,8 @@ namespace LifeinFile.Windows
             ComGauge.Visibility = Visibility.Hidden;
         }
 
-        public (double x, double y) GetScale() => (PetScale.ScaleX, PetScale.ScaleY);
+        public (double x, double y) GetSquishScale() => (SquishScale.ScaleX, SquishScale.ScaleY);
+        public (double x, double y) GetDirectionScale() => (DirectionScale.ScaleX, DirectionScale.ScaleY);
         public (double x, double y) GetTrans() => (PetTranslate.X, PetTranslate.Y);
 
         public void SetTrans(double x, double y)
@@ -34,16 +35,22 @@ namespace LifeinFile.Windows
             PetTranslate.X = x;
             PetTranslate.Y = y;
         }
-        public void SetScale(double x, double y)
+        public void SetSquishScale(double x, double y)
         {
-            PetScale.ScaleX = x;
-            PetScale.ScaleY = y;
+            SquishScale.ScaleX = x;
+            SquishScale.ScaleY = y;
         }
 
-        public void ChangeScale(double amountX, double amountY)
+        public void SetDirectionScale(double x, double y)
         {
-            PetScale.ScaleX += amountX;
-            PetScale.ScaleY += amountY;
+            DirectionScale.ScaleX = x;
+            DirectionScale.ScaleY = y;
+        }
+
+        public void AddScale(double amountX, double amountY)
+        {
+            SquishScale.ScaleX += amountX;
+            SquishScale.ScaleY += amountY;
         }
     }
 }

@@ -7,30 +7,38 @@ namespace LifeinFile.Views.Pets
 {
     public class AnimateStateMachine
     {
-        PetAnimationBase _currentPetAnimation; 
+        AnimationBase _currentAnimation; 
         CompositeDisposable _animationDisposables = new CompositeDisposable();
-        public void SetAnimation(PetAnimationBase petAnimation)
+        public void SetAnimation(AnimationBase squishAnimation)
         {
-            if(petAnimation == _currentPetAnimation) return;
+            if(squishAnimation == _currentAnimation) return;
             
             _animationDisposables.Clear();
             UpdateContext();
             
-            _currentPetAnimation = petAnimation;
-            _currentPetAnimation.OnEnter(_context);
+            _currentAnimation = squishAnimation;
+            _currentAnimation.OnEnter(_context);
         }
 
         AnimationContext _context;
         CompositeDisposable _userDisposables;
-        public AnimateStateMachine(CompositeDisposable userDisposables, PetAnimationBase petAnimation, AnimationContext animationContext)
+        public AnimateStateMachine(CompositeDisposable userDisposables, AnimationBase animation, AnimationContext animationContext)
         {
             _userDisposables = userDisposables;
             _context = animationContext;
             
             ProvideUpdate.LateUpdateAsObservable
-                .Subscribe(dt => _currentPetAnimation?.OnUpdate(dt))
+                .Subscribe(dt => _currentAnimation?.OnUpdate(dt))
+                .AddTo(userDisposables);            SetAnimation(animation);
+        }
+        public AnimateStateMachine(CompositeDisposable userDisposables, AnimationContext animationContext)
+        {
+            _userDisposables = userDisposables;
+            _context = animationContext;
+            
+            ProvideUpdate.LateUpdateAsObservable
+                .Subscribe(dt => _currentAnimation?.OnUpdate(dt))
                 .AddTo(userDisposables);
-            SetAnimation(petAnimation);
         }
 
         void UpdateContext()

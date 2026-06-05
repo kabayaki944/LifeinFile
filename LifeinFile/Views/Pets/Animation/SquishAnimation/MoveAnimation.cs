@@ -8,14 +8,14 @@ using System.Numerics;
 
 namespace LifeinFile.Views.Pets
 {
-    public class MovePetAnimation: PetAnimationBase
+    public class MoveAnimation: SquishAnimationBase
     {
         PetModel _model;
         // 独自に位相を管理するための変数（名前を分かりやすく _animX としました）
         double _animX = 0;
         protected override double Frequency { get; set; } = 1.0;
 
-        public MovePetAnimation(PetModel model, PetWindow window) : base(window)
+        public MoveAnimation(PetModel model, IPetWindow window) : base(window)
         {
             _model = model;
         }
@@ -29,7 +29,7 @@ namespace LifeinFile.Views.Pets
             _animX %= (Math.PI * 2);
 
             // 動いている時は速度に応じて加算
-            _animX += _model.Velocity.Length() / 10d;
+            _animX += _model.Velocity.Value.Length() / 10d;
 
             // 目標値の計算
             double targetTransY = CalcTransY();

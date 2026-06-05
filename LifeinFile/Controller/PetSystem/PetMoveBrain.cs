@@ -48,7 +48,7 @@ namespace LifeinFile.Controller.PetSystem
             if (_actionTimer >= _currentData.duration)
             {
                 UpdateMoveData();
-                _model.Velocity = _currentData.move;
+                _model.Velocity.Value = _currentData.move;
             }
         }
 

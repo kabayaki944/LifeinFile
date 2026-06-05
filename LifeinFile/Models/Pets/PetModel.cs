@@ -1,6 +1,8 @@
 ﻿using LifeinFile.Core.Cage;
 using LifeinFile.Core.Facade;
 using LifeinFile.Core.Pets;
+using LifeinFile.Helper;
+using Reactive.Bindings;
 using Reactive.Bindings.Disposables;
 using System.Numerics;
 
@@ -11,7 +13,15 @@ namespace LifeinFile.Models.Pets
         //---Basic---//
         public string Name { get; set; }
         public Vector2 Position { get; set;}
-        public Vector2 Velocity { get; set; }
+        public ReactiveProperty<Vector2> Velocity { get; } = new ReactiveProperty<Vector2>();
+        public ReactiveProperty<Direction> Direction { get;} = new ReactiveProperty<Direction>(Helper.Direction.Right);
+
+        public void UpdateDirectionByVelocity()
+        {
+            if(Velocity.Value.X ==0) return;
+            Direction.Value = (Velocity.Value.X > 0) ? Helper.Direction.Right : Helper.Direction.Left;
+        }
+
 
         private PetExternal _external;
         public CageExternal BelongCage => PetCageConnecter.GetCageOfPet(_external);
@@ -59,7 +69,7 @@ namespace LifeinFile.Models.Pets
         {
             Name = name;
             Position = position;
-            Velocity = Vector2.Zero;
+            Velocity.Value = Vector2.Zero;
             _external = external;
         }
     }

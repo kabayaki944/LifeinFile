@@ -2,15 +2,16 @@ using LifeinFile.Helper;
 using LifeinFile.Models.Pets;
 using Reactive.Bindings.Extensions;
 using System.Numerics;
+using System.Reactive.Linq;
 
 namespace LifeinFile.Views.Pets
 {
-    public class PetAnimationController
+    public class SquishAnimationController
     {
         PetModel _model;
         AnimateStateMachine _stateMachine;
         PetAnimationsCreator _animations;
-        public PetAnimationController(PetModel model, AnimateStateMachine stateMachine, PetAnimationsCreator animations)
+        public SquishAnimationController(PetModel model, AnimateStateMachine stateMachine, PetAnimationsCreator animations)
         {
             _model = model;
             _stateMachine = stateMachine;
@@ -23,8 +24,8 @@ namespace LifeinFile.Views.Pets
 
         void OnUpdate()
         {
-            if(_model.Velocity != Vector2.Zero) _stateMachine.SetAnimation(_animations.MovePet);
-            else _stateMachine.SetAnimation(_animations.BreathPet);
+            if(_model.Velocity.Value != Vector2.Zero) _stateMachine.SetAnimation(_animations.Move);
+            else _stateMachine.SetAnimation(_animations.Breath);
         }
         
     }

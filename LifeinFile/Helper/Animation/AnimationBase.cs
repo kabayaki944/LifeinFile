@@ -4,33 +4,17 @@ using System;
 
 namespace LifeinFile.Views.Pets.Animations
 {
-    public abstract class PetAnimationBase
+    public abstract class AnimationBase
     {
-        protected const int IDX_SIZE = 4;
-
-        protected const int IDX_TRANS_X = 0;
-        protected const int IDX_TRANS_Y = 1;
-        protected const int IDX_SCALE_X = 2;
-        protected const int IDX_SCALE_Y = 3;
-        
-        const double INIT_TRANS_X = 0;
-        const double INIT_TRANS_Y = 0;
-        const double INIT_SCALE_X = 1;
-        const double INIT_SCALE_Y = 1;
+        protected abstract int IDX_SIZE { get; set; }
         
         protected double Timer { get; private set; }
         protected virtual double EasingDuration => 0.3; 
         protected virtual double Frequency { get; set; } = 1.0;
 
-        double[] _startValues;
-        double[] _targetValues;
-        double[] _easingValues;
-        
-        protected readonly PetWindow Window;
-        protected PetAnimationBase(PetWindow window)
-        {
-            Window = window;
-        }
+        protected double[] _startValues;
+        protected double[] _targetValues;
+        protected double[] _easingValues;
         
         public void OnEnter(AnimationContext context)
         {
@@ -66,31 +50,12 @@ namespace LifeinFile.Views.Pets.Animations
             ApplyToView(_easingValues);
         }
 
-        void SetStartValues()
-        {
-            var trans = Window.GetTrans();
-            var scale = Window.GetScale();
-            _startValues[IDX_TRANS_X] = trans.x;
-            _startValues[IDX_TRANS_Y] = trans.y;
-            _startValues[IDX_SCALE_X] = scale.x;
-            _startValues[IDX_SCALE_Y]  = scale.y;
-        }
-
-        void SetInitialValues()
-        {
-            _targetValues[IDX_TRANS_X] = INIT_TRANS_X;
-            _targetValues[IDX_TRANS_Y] = INIT_TRANS_Y;
-            _targetValues[IDX_SCALE_X] = INIT_SCALE_X;
-            _targetValues[IDX_SCALE_Y] = INIT_SCALE_Y;
-        }
+        protected abstract void SetStartValues();
+        protected abstract void SetInitialValues();
         
         protected abstract void UpdateTargets(double[] targets, double phase);
-        
-        void ApplyToView(double[] currentValues)
-        {
-            Window.SetTrans(_easingValues[IDX_TRANS_X], _easingValues[IDX_TRANS_Y]);
-            Window.SetScale(_easingValues[IDX_SCALE_X], _easingValues[IDX_SCALE_Y]);
-        }
+
+        protected abstract void ApplyToView(double[] currentValues);
 
         protected abstract void OnStart(AnimationContext context);
     }
