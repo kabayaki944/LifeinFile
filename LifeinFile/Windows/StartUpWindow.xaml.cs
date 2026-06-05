@@ -9,6 +9,9 @@ namespace LifeinFile.Windows
         public StartUpWindow()
         {
             InitializeComponent();
+            
+            MenuWindow menuWindow = new MenuWindow();
+            menuWindow.Show();
 
             PetInitData initData = new PetInitData("Test", new System.Numerics.Vector2(100, 100));
             for(int i =0; i < 1; i++)

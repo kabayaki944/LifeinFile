@@ -1,0 +1,15 @@
+<base:WindowBase x:Class="LifeinFile.Windows.MenuWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:base="clr-namespace:LifeinFile.Windows"
+                 Title="メニュー" Height="400" Width="300"
+                 ResizeMode="NoResize"
+                 WindowStartupLocation="CenterScreen">
+    
+    <ContentControl x:Name="MenuContent">
+        <StackPanel x:Name="MainMenuPanel" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Content="Pet作成" Width="150" Height="45" Margin="0,0,0,20" FontSize="16" Click="CreatePetButton_Click"/>
+            <Button Content="Cage作成" Width="150" Height="45" FontSize="16" Click="CreateCageButton_Click"/>
+        </StackPanel>
+    </ContentControl>
+</base:WindowBase>
