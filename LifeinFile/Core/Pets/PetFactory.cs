@@ -11,7 +11,7 @@ namespace LifeinFile.Core.Pets
     {
         static bool _isFirst = true;
 
-        public static DropFileController Create(PetInitData initData)
+        public static PetExternal Create(PetInitData initData)
         {
             if(_isFirst)
             {
@@ -53,7 +53,7 @@ namespace LifeinFile.Core.Pets
             
             external.Construct(model, collision, window);
 
-            return filesController;
+            return external;
         }
     }
 }

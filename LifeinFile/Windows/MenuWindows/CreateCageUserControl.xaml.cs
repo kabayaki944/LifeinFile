@@ -1,4 +1,5 @@
 using LifeinFile.Core.Cage;
+using LifeinFile.Core.Facade;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -24,7 +25,7 @@ namespace LifeinFile.Windows
             // 【ここに実際のCageWindowを生成・表示するロジックを走らせる】
             //MessageBox.Show($"名前「{cageName}」のCageを配置します！", "成功");
             CageInitData data = new CageInitData(cageName);
-            CageFactory.Create(data);
+            CageManager.CreateCage(data);
 
             // 親ウィンドウを取得して、最初のメニュー画面に戻す
             var mainWindow = Window.GetWindow(this) as MenuWindow;

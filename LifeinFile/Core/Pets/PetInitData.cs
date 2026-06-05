@@ -3,7 +3,7 @@ using System.Windows;
 
 namespace LifeinFile.Core.Pets
 {
-    class PetInitData
+    public class PetInitData
     {
         public string Name { get;}
         public Vector2 Position { get; }
