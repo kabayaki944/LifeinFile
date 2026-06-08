@@ -7,18 +7,21 @@ namespace LifeinFile.Core.Facade
 {
     public static class PetManager
     {
+        static PetFactory _petFactory = new PetFactory();
         static List<PetExternal> _pets = new List<PetExternal>();
         public static IReadOnlyList<PetExternal> Pets => _pets;
 
         public static void CreatePet(PetInitData data)
         {
-            var cage = PetFactory.Create(data);
-            _pets.Add(cage);
+            var pet = _petFactory.Create(data);
+            _pets.Add(pet);
+            PetCageConnector.MovePetToOut(pet);
         }
         
         public static void RemovePet(PetExternal pet)
         {
             _pets.Remove(pet);
+            PetCageConnector.RemovePet(pet);
         }
     }
 }

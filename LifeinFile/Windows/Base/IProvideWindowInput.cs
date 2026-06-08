@@ -37,6 +37,7 @@ namespace LifeinFile.Windows
         IObservable<System.Reactive.Unit> OnLocationChangedAsObservable { get; }
         IObservable<Size> OnSizeChangedAsObservable { get; }
         IObservable<Unit> OnDeactivatedAsObservable { get; } // 裏画面に行った時（おやすみモード用などに）
+        IObservable<Unit> OnClosedAsObservable { get; } // ウィンドウが完全に閉じた時
     }
 
     // 上記すべてを束ねた「最強の入力インターフェース」

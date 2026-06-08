@@ -24,7 +24,7 @@ namespace LifeinFile.Models.Pets
 
 
         private PetExternal _external;
-        public CageExternal BelongCage => PetCageConnecter.GetCageOfPet(_external);
+        public CageExternal BelongCage => PetCageConnector.GetCageOfPet(_external);
         
         //---Reactive---//
         public CompositeDisposable Disposables{ get; }= new CompositeDisposable();
@@ -72,5 +72,7 @@ namespace LifeinFile.Models.Pets
             Velocity.Value = Vector2.Zero;
             _external = external;
         }
+        
+        ~PetModel() => System.Diagnostics.Debug.WriteLine("PetModel is clear");
     }
 }

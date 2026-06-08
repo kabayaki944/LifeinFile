@@ -7,7 +7,7 @@ using System.Text;
 
 namespace LifeinFile.Core.Facade
 {
-    public static class PetCageConnecter
+    public static class PetCageConnector
     {
         static Dictionary<PetExternal, CageExternal> _petCageMap = new Dictionary<PetExternal, CageExternal>();
 
@@ -41,6 +41,20 @@ namespace LifeinFile.Core.Facade
             return _petCageMap.Where(kvp => kvp.Value == cage)
                               .Select(kvp => kvp.Key)
                               .ToList();
+        }
+
+        public static void RemovePet(PetExternal pet)
+        {
+            _petCageMap.Remove(pet);
+        }
+
+        public static void RemoveCage(CageExternal cage)
+        {
+            var killPets = GetPetsInCage(cage);
+            foreach (var pet in killPets)
+            {
+                pet.Kill();
+            }
         }
     }
 }

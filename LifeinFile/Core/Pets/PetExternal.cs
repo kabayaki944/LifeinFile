@@ -1,4 +1,5 @@
-﻿using LifeinFile.Helper;
+﻿using LifeinFile.Controller.PetSystem;
+using LifeinFile.Helper;
 using LifeinFile.Models.Pets;
 using LifeinFile.Views.Pets;
 using System.Windows;
@@ -10,8 +11,9 @@ namespace LifeinFile.Core.Pets
     {
         public IExternalModel Model { get; private set; }
         public Window Window { get; private set; }
+        LifeSystem _lifeSystem;
         PetCollision _collision;
-        public void Construct(IExternalModel model, PetCollision collision, PetWindow window)
+        public void Construct(IExternalModel model, PetCollision collision, PetWindow window, LifeSystem lifeSystem)
         {
             Model = model;
             _collision = collision;
@@ -19,5 +21,8 @@ namespace LifeinFile.Core.Pets
         }
 
         public void OnCollision(CollisionResult result) => _collision.OnCollision(result);
+        public void Kill() => _lifeSystem.Kill();
+        
+        ~PetExternal() => System.Diagnostics.Debug.WriteLine("PetExternal is clear");
     }
 }

@@ -55,14 +55,14 @@ namespace LifeinFile.Controller.PetSystem
                     if (cageRect.Contains(petCenter))
                     {
                         // ※PetCageConnecter や cage.External は既存のシステムに合わせています
-                        PetCageConnecter.MovePetToCage(_external, cage.External);
+                        PetCageConnector.MovePetToCage(_external, cage.External);
                         return; // 入っていたらここで終了
                     }
                 }
             }
 
             // どのケージにも入っていなかった場合（外にドロップ）
-            PetCageConnecter.MovePetToOut(_external);
+            PetCageConnector.MovePetToOut(_external);
         }
     }
 }

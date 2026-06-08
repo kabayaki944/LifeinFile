@@ -22,7 +22,7 @@ namespace LifeinFile.Views.Pets.Animation.DirectionAnimation
 
         void OnChange(Direction direction)
         {
-            Debug.WriteLine("OnChange: " + direction);
+            //Debug.WriteLine("OnChange: " + direction);
             TurnAnimation turn = (direction == Direction.Left)? _animations.LeftTurn : _animations.RightTurn;
             _stateMachine.SetAnimation(turn);
         }

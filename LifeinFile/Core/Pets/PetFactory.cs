@@ -7,11 +7,11 @@ using PetWindow = LifeinFile.Windows.PetWindow;
 
 namespace LifeinFile.Core.Pets
 {
-    static class PetFactory
+    class PetFactory
     {
-        static bool _isFirst = true;
+        bool _isFirst = true;
 
-        public static PetExternal Create(PetInitData initData)
+        public PetExternal Create(PetInitData initData)
         {
             if(_isFirst)
             {
@@ -20,13 +20,16 @@ namespace LifeinFile.Core.Pets
             }
 
             PetExternal external = new PetExternal();
+            
+            PetModel model = new PetModel(initData.Name, initData.Position, external);
+            
             PetWindow window = new PetWindow();
             window.Show();
-
-            PetModel model = new PetModel(initData.Name, initData.Position, external);
-
+            
             DragController dragController = new DragController(model,  window, window, window, external);
 
+            LifeSystem lifeSystem = new LifeSystem(model, window, external);
+            
             DropFileController filesController = new DropFileController(model, window);
             Interacted interacted = new Interacted(model, window);
             GaugeConsumer gaugeConsumer = new GaugeConsumer(model);
@@ -51,7 +54,7 @@ namespace LifeinFile.Core.Pets
             PetScreenCollider screenCollider = new PetScreenCollider(model, window, collision);
             PetMoveDrive mover = new PetMoveDrive(model, window);
             
-            external.Construct(model, collision, window);
+            external.Construct(model, collision, window, lifeSystem);
 
             return external;
         }

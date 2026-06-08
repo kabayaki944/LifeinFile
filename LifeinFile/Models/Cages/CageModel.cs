@@ -14,12 +14,14 @@ namespace LifeinFile.Models.Cages
         public CompositeDisposable Disposables { get;} = new CompositeDisposable();
         
         private CageExternal _external;
-        public IReadOnlyList<PetExternal> Pets => PetCageConnecter.GetPetsInCage(_external);
+        public IReadOnlyList<PetExternal> Pets => PetCageConnector.GetPetsInCage(_external);
         
         public CageModel(string name, CageExternal external)
         {
             Name = name;
             _external = external;
         }
+        
+        ~CageModel() => System.Diagnostics.Debug.WriteLine($"Cage clear: {Name}");
     }
 }

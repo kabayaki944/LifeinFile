@@ -31,7 +31,6 @@ namespace LifeinFile.Core.Cage
                 // どこかの壁に当たっていたら、PetExternalの OnCollision を呼び出す！
                 if (result.hitX || result.hitY)
                 {
-                    Debug.WriteLine($"Collision detected for pet {pet.Model.Name} with cage {_model.Name}");
                     pet.OnCollision(result);
                 }
             }

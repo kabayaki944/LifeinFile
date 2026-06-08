@@ -82,6 +82,10 @@ namespace LifeinFile.Windows
         public IObservable<Unit> OnDeactivatedAsObservable =>
             Observable.FromEventPattern<EventArgs>(this, nameof(Deactivated))
                 .Select(_ => Unit.Default);
+        
+        public IObservable<Unit> OnClosedAsObservable =>
+            Observable.FromEventPattern<EventArgs>(this, nameof(Closed))
+                .Select(_ => Unit.Default);
 
 
         // ==========================================

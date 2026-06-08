@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using LifeinFile.Controller.PetSystem;
+using LifeinFile.Models.Pets;
+using System.Windows;
 using System.Windows.Input;
 
 namespace LifeinFile.Windows
@@ -52,5 +54,7 @@ namespace LifeinFile.Windows
             SquishScale.ScaleX += amountX;
             SquishScale.ScaleY += amountY;
         }
+        
+        ~PetWindow() => System.Diagnostics.Debug.WriteLine("PetWindow is clear");
     }
 }
