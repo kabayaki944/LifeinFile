@@ -10,7 +10,7 @@ namespace LifeinFile.Core.Cage
         {
             CageExternal external = new CageExternal();
             CageModel model = new CageModel(initData.Name, external);
-            CageWindow window = new CageWindow(external);
+            CageWindow window = new CageWindow(external, model);
             window.Show();
             LifeSystem lifeSystem = new LifeSystem(model, external, window);
             

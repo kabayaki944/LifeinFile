@@ -23,7 +23,7 @@ namespace LifeinFile.Core.Pets
             
             PetModel model = new PetModel(initData.Name, initData.Position, external);
             
-            PetWindow window = new PetWindow();
+            PetWindow window = new PetWindow(model);
             window.Show();
             
             DragController dragController = new DragController(model,  window, window, window, external);

@@ -1,5 +1,6 @@
 ﻿using LifeinFile.Controller.PetSystem;
 using LifeinFile.Models.Pets;
+using Reactive.Bindings.Extensions;
 using System.Windows;
 using System.Windows.Input;
 
@@ -7,11 +8,14 @@ namespace LifeinFile.Windows
 {
     public partial class PetWindow : WindowBase, IPetWindow
     {
-        public PetWindow()
+        public PetWindow(PetModel model)
         {
             InitializeComponent();
             HungerGauge.Visibility = Visibility.Hidden;
             ComGauge.Visibility = Visibility.Hidden;
+            
+            model.Name.Subscribe(newName => Title =  newName)
+                .AddTo(model.Disposables);
         }
         private void Grid_MouseEnter(object sender, MouseEventArgs e)
         {

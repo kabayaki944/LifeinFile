@@ -8,7 +8,7 @@ namespace LifeinFile.Models.Pets
 {
     public interface IExternalModel
     {
-        public string Name { get;}
+        public IReadOnlyReactiveProperty<string> Name { get;}
         public Vector2 Position { get;}
         public ReactiveProperty<Vector2> Velocity { get; }
     }

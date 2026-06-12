@@ -11,7 +11,7 @@ namespace LifeinFile.Models.Pets
     public class PetModel:IExternalModel
     {
         //---Basic---//
-        public string Name { get; set; }
+        public ReactiveProperty<string> Name { get;} = new ReactiveProperty<string>("");
         public Vector2 Position { get; set;}
         public ReactiveProperty<Vector2> Velocity { get; } = new ReactiveProperty<Vector2>();
         public ReactiveProperty<Direction> Direction { get;} = new ReactiveProperty<Direction>(Helper.Direction.Right);
@@ -67,11 +67,14 @@ namespace LifeinFile.Models.Pets
 
         public PetModel(string name, Vector2 position, PetExternal external)
         {
-            Name = name;
+            Name.Value = name;
             Position = position;
             Velocity.Value = Vector2.Zero;
             _external = external;
         }
+        
+        //IReadOnly
+        IReadOnlyReactiveProperty<string> IExternalModel.Name { get;}
         
         ~PetModel() => System.Diagnostics.Debug.WriteLine("PetModel is clear");
     }
