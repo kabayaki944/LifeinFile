@@ -20,6 +20,7 @@ namespace LifeinFile.Core.Pets
             Window = window;
         }
 
+        
         public void OnCollision(CollisionResult result) => _collision.OnCollision(result);
         public void Kill() => _lifeSystem.Kill();
         

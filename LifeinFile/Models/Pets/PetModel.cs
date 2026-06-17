@@ -2,6 +2,7 @@
 using LifeinFile.Core.Facade;
 using LifeinFile.Core.Pets;
 using LifeinFile.Helper;
+using LifeinFile.Views.Pets;
 using Reactive.Bindings;
 using Reactive.Bindings.Disposables;
 using System.Numerics;
@@ -21,6 +22,8 @@ namespace LifeinFile.Models.Pets
             if(Velocity.Value.X ==0) return;
             Direction.Value = (Velocity.Value.X > 0) ? Helper.Direction.Right : Helper.Direction.Left;
         }
+        
+        public ReactiveProperty<PetSprites>  Sprites { get;} = new ReactiveProperty<PetSprites>();
 
 
         private PetExternal _external;

@@ -12,5 +12,6 @@ namespace LifeinFile.Windows
         public void SetDirectionScale(double x, double y);
 
         public void AddScale(double amountX, double amountY);
+        public void SetSprite(string spriteName);
     }
 }

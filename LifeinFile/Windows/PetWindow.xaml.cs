@@ -1,6 +1,7 @@
 ﻿using LifeinFile.Controller.PetSystem;
 using LifeinFile.Models.Pets;
 using Reactive.Bindings.Extensions;
+using System.Net.Mime;
 using System.Windows;
 using System.Windows.Input;
 
@@ -57,6 +58,12 @@ namespace LifeinFile.Windows
         {
             SquishScale.ScaleX += amountX;
             SquishScale.ScaleY += amountY;
+        }
+
+        public void SetSprite(string spriteName)
+        {
+            Uri uri = new Uri(spriteName, UriKind.Relative);
+            Image.Source = new System.Windows.Media.Imaging.BitmapImage(uri);
         }
         
         ~PetWindow() => System.Diagnostics.Debug.WriteLine("PetWindow is clear");

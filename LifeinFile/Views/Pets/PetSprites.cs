@@ -10,4 +10,12 @@ namespace LifeinFile.Views.Pets
         public string Trouble{get; set; }
         public string Dizzy{get; set; }
     }
+
+    public enum SpriteType
+    {
+        Normal,
+        Smile,
+        Trouble,
+        Dizzy
+    }
 }

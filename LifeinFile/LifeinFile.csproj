@@ -13,13 +13,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\Graphic\Pets\TestCat.png" />
+    <Resource Include="Assets\Graphic\Pets\-2_Supiki\supiki.png" />
     <None Remove="Assets\Graphic\Pets\supiki.png" />
-    <Resource Include="Assets\Graphic\Pets\supiki.png" />
     <None Remove="Assets\Graphic\Pets\Cat_ElementaryBody.png" />
     <Resource Include="Assets\Graphic\Pets\Cat_ElementaryBody.png" />
     <None Remove="Assets\Graphic\Pets\Dog_ElementaryBody.png" />
     <Resource Include="Assets\Graphic\Pets\Dog_ElementaryBody.png" />
+    <Resource Include="Assets\Graphic\Pets\-1_TestCat\TestCat.png" />
   </ItemGroup>
 
   <ItemGroup>
