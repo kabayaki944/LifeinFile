@@ -17,15 +17,17 @@
         <StackPanel Grid.Row="1" VerticalAlignment="Center">
             <TextBlock Text="名前を入力してください:" Margin="0,0,0,5" FontSize="12" Foreground="Gray"/>
             <TextBox x:Name="PetNameInput" Width="200" Height="30" FontSize="14" VerticalContentAlignment="Center" Text="{Binding PetName.Value, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="{Binding PetNameError.Value}" Foreground="Red" FontSize="11" Margin="0,5,0,0" Height="15"/>
         </StackPanel>
+        
         <StackPanel Grid.Row="2" VerticalAlignment="Center">
-            <TextBlock Text="idを入力してください:" Margin="0,0,0,5" FontSize="12" Foreground="Gray"/>
+            <TextBlock Text="IDを入力してください:" Margin="0,0,0,5" FontSize="12" Foreground="Gray"/>
             <TextBox x:Name="PetIdInput" Width="200" Height="30" FontSize="14" VerticalContentAlignment="Center" Text="{Binding PetId.Value, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="{Binding PetIdError.Value}" Foreground="Red" FontSize="11" Margin="0,5,0,0" Height="15"/>
         </StackPanel>
-
 
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="作成" Width="80" Height="35" Margin="0,0,10,0" Click="CreateButton_Click"/>
+            <Button Content="作成" Width="80" Height="35" Margin="0,0,10,0" Click="CreateButton_Click" IsEnabled="{Binding CanCreate.Value}"/>
             <Button Content="戻る" Width="80" Height="35" Click="CancelButton_Click"/>
         </StackPanel>
     </Grid>
