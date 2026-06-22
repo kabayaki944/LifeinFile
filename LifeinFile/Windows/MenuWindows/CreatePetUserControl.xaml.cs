@@ -1,6 +1,7 @@
 using LifeinFile.Core.Cage;
 using LifeinFile.Core.Facade;
 using LifeinFile.Core.Pets;
+using LifeinFile.Models.Pets;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using System.Reactive.Disposables;
@@ -104,9 +105,8 @@ namespace LifeinFile.Windows
         // --- UI イベントハンドラ ---
         private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
-            // ※ボタンが押せた時点でエラーは100%無いので、面倒なチェックは不要！最高！
-            
             PetCageConnector.MovePetToOut(_previewPet);
+            _previewPet.Model.State.Value = PetState.Active;
             _previewPet = null; // Killさせないために外す
             CloseMenu();
         }

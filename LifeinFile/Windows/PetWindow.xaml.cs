@@ -9,17 +9,20 @@ namespace LifeinFile.Windows
 {
     public partial class PetWindow : WindowBase, IPetWindow
     {
+        PetModel _model;
         public PetWindow(PetModel model)
         {
             InitializeComponent();
             HungerGauge.Visibility = Visibility.Hidden;
             ComGauge.Visibility = Visibility.Hidden;
+            _model = model;
             
             model.Name.Subscribe(newName => Title =  newName)
                 .AddTo(model.Disposables);
         }
         private void Grid_MouseEnter(object sender, MouseEventArgs e)
         {
+            if(!_model.AbleToShowGauge) return;
             // ゲージを表示する
             HungerGauge.Visibility = Visibility.Visible;
             ComGauge.Visibility = Visibility.Visible;

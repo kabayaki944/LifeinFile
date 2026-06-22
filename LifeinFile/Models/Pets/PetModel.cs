@@ -34,6 +34,7 @@ namespace LifeinFile.Models.Pets
         public ReactiveProperty<PetState>  State { get;} = new ReactiveProperty<PetState>();
         public bool AbleToMove { get; private set; }
         public bool AbleToInteract { get; private set; }
+        public bool AbleToShowGauge { get; private set; }
         public bool AbleToConsumeGauge { get; private set; }
 
         void StateSubscribe()
@@ -45,16 +46,19 @@ namespace LifeinFile.Models.Pets
                         case PetState.Preview:
                             AbleToMove = true;
                             AbleToInteract = false;
+                            AbleToShowGauge = false;
                             AbleToConsumeGauge = false;
                             break;
                         case PetState.Active:
                             AbleToMove = true;
                             AbleToInteract = true;
+                            AbleToShowGauge = true;
                             AbleToConsumeGauge = true;
                             break;
                         case PetState.Pose:
                             AbleToMove = false;
                             AbleToInteract = false;
+                            AbleToShowGauge = true;
                             AbleToConsumeGauge = false;
                             break;
                     }
