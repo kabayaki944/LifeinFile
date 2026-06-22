@@ -14,6 +14,7 @@ namespace LifeinFile.Core.Cage
         {
             Model = model;
             Window = window;
+            _lifeSystem = lifeSystem;
         }
         
         public void Kill() => _lifeSystem.Kill();

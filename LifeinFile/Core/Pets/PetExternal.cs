@@ -18,6 +18,7 @@ namespace LifeinFile.Core.Pets
             Model = model;
             _collision = collision;
             Window = window;
+            _lifeSystem = lifeSystem;
         }
 
         

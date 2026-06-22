@@ -11,11 +11,12 @@ namespace LifeinFile.Core.Facade
         static List<PetExternal> _pets = new List<PetExternal>();
         public static IReadOnlyList<PetExternal> Pets => _pets;
 
-        public static void CreatePet(PetInitData data)
+        public static PetExternal CreatePet(PetInitData data)
         {
             var pet = _petFactory.Create(data);
             _pets.Add(pet);
             PetCageConnector.MovePetToOut(pet);
+            return pet;
         }
         
         public static void RemovePet(PetExternal pet)

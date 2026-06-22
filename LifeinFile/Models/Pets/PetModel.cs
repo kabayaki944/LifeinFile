@@ -115,7 +115,7 @@ namespace LifeinFile.Models.Pets
         }
         
         //IReadOnly
-        IReadOnlyReactiveProperty<string> IExternalModel.Name { get;}
+        //IReadOnlyReactiveProperty<string> IExternalModel.Name { get;}
         
         ~PetModel() => System.Diagnostics.Debug.WriteLine("PetModel is clear");
     }

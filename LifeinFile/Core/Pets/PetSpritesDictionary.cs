@@ -10,6 +10,7 @@ namespace LifeinFile.Core.Pets
 {
     public static class PetSpritesDictionary
     {
+        public const int DEFAULT_PET_ID = -1;
         private static Dictionary<int, PetSprites> _dictionary = new Dictionary<int, PetSprites>();
 
         public static bool TryGet(int id, out PetSprites sprite)
@@ -17,6 +18,8 @@ namespace LifeinFile.Core.Pets
             if(_dictionary.Count == 0) LoadAll();
             return _dictionary.TryGetValue(id, out sprite);
         }
+
+        public static bool TryGetDefault(out PetSprites sprite) => TryGet(DEFAULT_PET_ID, out sprite);
 
         public static int Count{ get
         {

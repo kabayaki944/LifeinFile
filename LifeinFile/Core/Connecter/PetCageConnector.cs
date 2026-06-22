@@ -16,6 +16,7 @@ namespace LifeinFile.Core.Facade
             Debug.WriteLine("Moving pet to cage: " + pet.Model.Name + " -> " + cage.Model.Name);
             _petCageMap[pet] = cage;
             pet.Window.Owner = cage.Window;
+            pet.Window.Activate();
         }
 
 
