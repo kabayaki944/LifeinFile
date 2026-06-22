@@ -1,6 +1,7 @@
 ﻿using LifeinFile.Helper;
 using LifeinFile.Models.Pets;
 using Reactive.Bindings.Extensions;
+using System.Reactive.Linq;
 using System.Windows;
 
 namespace LifeinFile.Views.Pets
@@ -14,9 +15,11 @@ namespace LifeinFile.Views.Pets
             _model = model;
             _window = window;
             ProvideUpdate.LateUpdateAsObservable
+                .Where(_ => model.AbleToMove)
                 .Subscribe(_ => OnUpdateLate())
                 .AddTo(_model.Disposables);
             model.Velocity
+                .Where(_ => model.AbleToMove)
                 .Subscribe(_ =>OnChnage())
                 .AddTo(_model.Disposables);
         }

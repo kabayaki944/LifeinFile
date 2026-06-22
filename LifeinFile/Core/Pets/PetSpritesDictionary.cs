@@ -26,6 +26,15 @@ namespace LifeinFile.Core.Pets
             if(_dictionary.Count == 0) LoadAll();
             return _dictionary.Count;
         }}
+
+        public static int MaxId
+        {
+            get
+            {
+                if(_dictionary.Count == 0) LoadAll();
+                return _dictionary.Max(x => x.Key);
+            }
+        }
         
         // 検索するフォルダのパス（実行ファイルのある場所から Assets/Graphic/Pets を探す）
         private static readonly string SearchDirectory =

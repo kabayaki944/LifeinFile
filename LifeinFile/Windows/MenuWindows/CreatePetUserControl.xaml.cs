@@ -113,6 +113,39 @@ namespace LifeinFile.Windows
             CloseMenu();
         }
 
+        private void DecreaseIdButton_Click(object sender, RoutedEventArgs e)
+        {
+            // 現在のテキストが数字に変換できるかチェック
+            if (int.TryParse(PetId.Value, out int currentId))
+            {
+                // IDがマイナスにならないようにする（必要に応じて外してください）
+                if (currentId > 0)
+                {
+                    PetId.Value = (currentId - 1).ToString();
+                }
+            }
+            else
+            {
+                // 数字以外（空欄や「あいう」など）が入っていたら、とりあえず0にする
+                PetId.Value = "0";
+            }
+        }
+
+        private void IncreaseIdButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (int.TryParse(PetId.Value, out int currentId))
+            {
+                int newId = currentId + 1;
+                if (currentId >= PetSpritesDictionary.MaxId)
+                    newId = 0; 
+                PetId.Value = newId.ToString();
+            }
+            else
+            {
+                PetId.Value = "0";
+            }
+        }
+        
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             CloseMenu();

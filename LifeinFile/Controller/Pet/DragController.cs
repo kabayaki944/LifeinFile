@@ -28,13 +28,21 @@ namespace LifeinFile.Controller.PetSystem
             // ① マウスを「押し込んだ」時：ドラッグ移動を開始する
             input.OnMouseLeftDownAsObservable
                 .Where(_ => model.AbleToInteract)
-                .Subscribe(_ => _driver.StartDragMove())
+                .Subscribe(_ =>
+                {
+                    _driver.StartDragMove();
+                    model.State.Value = PetState.Draged;
+                })
                 .AddTo(model.Disposables);
 
             // ② マウスを「離した」時：ドラッグ終了なので、ケージに入ったか判定する
             input.OnMouseLeftUpAsObservable
                 .Where(_ => model.AbleToInteract)
-                .Subscribe(_ => CheckDropInCage())
+                .Subscribe(_ =>
+                {
+                    CheckDropInCage();
+                    model.State.Value = PetState.Active;
+                })
                 .AddTo(model.Disposables);
         }
 

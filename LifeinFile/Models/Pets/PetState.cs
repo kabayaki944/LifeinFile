@@ -4,6 +4,7 @@ namespace LifeinFile.Models.Pets
     {
         Preview,
         Active,
+        Draged,
         Pose,
     }
 }

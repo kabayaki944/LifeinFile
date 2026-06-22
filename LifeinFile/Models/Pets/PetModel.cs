@@ -55,6 +55,12 @@ namespace LifeinFile.Models.Pets
                             AbleToShowGauge = true;
                             AbleToConsumeGauge = true;
                             break;
+                        case PetState.Draged:
+                            AbleToMove = false;
+                            AbleToInteract = false;
+                            AbleToShowGauge = true;
+                            AbleToConsumeGauge = true;
+                            break;
                         case PetState.Pose:
                             AbleToMove = false;
                             AbleToInteract = false;
