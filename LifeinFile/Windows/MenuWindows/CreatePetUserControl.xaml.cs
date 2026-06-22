@@ -1,6 +1,7 @@
 using LifeinFile.Core.Cage;
 using LifeinFile.Core.Facade;
 using LifeinFile.Core.Pets;
+using LifeinFile.Models.Cages;
 using LifeinFile.Models.Pets;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
@@ -49,6 +50,7 @@ namespace LifeinFile.Windows
             ).ToReadOnlyReactiveProperty().AddTo(_disposables);
 
             _previewCage = CageManager.CreateCage(new CageInitData("Review"));
+            _previewCage.Model.State.Value = CageState.PetPreview;
             
             if (PetSpritesDictionary.TryGetDefault(out var sprites))
             {

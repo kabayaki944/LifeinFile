@@ -14,6 +14,7 @@ namespace LifeinFile.Core.Cage
             window.Show();
             LifeSystem lifeSystem = new LifeSystem(model, external, window);
             
+            WindowCloseView windowCloseView = new WindowCloseView(model, window);
             CageMover mover = new CageMover(window, window, model);
             PetInCageMover petInCageMover = new PetInCageMover(model, window, window, external);
             CageCollider collider = new CageCollider(model, window);
