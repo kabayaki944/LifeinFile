@@ -2,6 +2,7 @@
 using LifeinFile.Models.Pets;
 using Reactive.Bindings.Extensions;
 using System.Numerics;
+using System.Reactive.Linq;
 
 namespace LifeinFile.Controller.PetSystem
 { 
@@ -30,30 +31,28 @@ namespace LifeinFile.Controller.PetSystem
         {
             _model = model;
             ProvideUpdate.UpdateAsObservable
+                .Where(_ => model.AbleToMove)
                 .Subscribe(_ => OnUpdate())
                 .AddTo(model.Disposables);
-
-            Start();
         }
 
-        void Start()
-        {
-            UpdateMoveData();
-        }
-
-        public void OnUpdate()
+        
+        void OnUpdate()
         { 
             _actionTimer++;
 
+            //最初に起動したとき
+            if(_currentData.duration == 0) DecideNextMoveData();
+            
             if (_actionTimer >= _currentData.duration)
             {
-                UpdateMoveData();
+                DecideNextMoveData();
                 _model.Velocity.Value = _currentData.move;
             }
         }
 
         // 次の行動をランダムに決める処理
-        private void UpdateMoveData()
+        void DecideNextMoveData()
         {
             int nextAction = _random.Next(2);
 

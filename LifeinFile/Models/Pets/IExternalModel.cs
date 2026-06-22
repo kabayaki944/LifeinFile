@@ -13,5 +13,7 @@ namespace LifeinFile.Models.Pets
         public Vector2 Position { get;}
         public ReactiveProperty<Vector2> Velocity { get; }
         public ReactiveProperty<PetSprites> Sprites { get; }
+        
+        public ReactiveProperty<PetState> State { get; }
     }
 }

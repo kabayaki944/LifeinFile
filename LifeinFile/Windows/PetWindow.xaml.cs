@@ -62,7 +62,8 @@ namespace LifeinFile.Windows
 
         public void SetSprite(string spriteName)
         {
-            Uri uri = new Uri(spriteName, UriKind.Relative);
+            Console.WriteLine(spriteName);
+            Uri uri = new Uri(spriteName, UriKind.RelativeOrAbsolute);
             Image.Source = new System.Windows.Media.Imaging.BitmapImage(uri);
         }
         

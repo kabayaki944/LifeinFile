@@ -4,6 +4,7 @@ using Reactive.Bindings.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Reactive.Linq;
 using System.Text;
 using System.Windows;
 
@@ -19,11 +20,12 @@ namespace LifeinFile.Controller.PetSystem
         {
             _model = model;
             ProvideUpdate.UpdateAsObservable
+                .Where(_ => model.AbleToConsumeGauge)
                 .Subscribe(_ =>OnUpdate())
                 .AddTo(model.Disposables);
         }
 
-        public void OnUpdate()
+        void OnUpdate()
         {
             //Debug.WriteLine($"Hunger before consuming: {_model.CurrentHunger}");
             _model.ConsumeHunger(HUNGER_CONSUME_RATE);

@@ -2,6 +2,7 @@
 using LifeinFile.Windows;
 using Reactive.Bindings.Extensions;
 using System.IO;
+using System.Reactive.Linq;
 
 namespace LifeinFile.Controller.PetSystem
 {
@@ -14,6 +15,7 @@ namespace LifeinFile.Controller.PetSystem
         {
             _model = model;
             input.OnFileDroppedAsObservable
+                .Where(_ => model.AbleToInteract)
                 .Subscribe(EatFiles)
                 .AddTo(model.Disposables);
         }

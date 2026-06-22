@@ -13,13 +13,29 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\Graphic\Pets\-2_Supiki\supiki.png" />
+    <Content Include="Assets\Graphic\Pets\-2_Supiki\supiki.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Remove="Assets\Graphic\Pets\supiki.png" />
     <None Remove="Assets\Graphic\Pets\Cat_ElementaryBody.png" />
-    <Resource Include="Assets\Graphic\Pets\Cat_ElementaryBody.png" />
+    <Content Include="Assets\Graphic\Pets\Cat_ElementaryBody.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Remove="Assets\Graphic\Pets\Dog_ElementaryBody.png" />
-    <Resource Include="Assets\Graphic\Pets\Dog_ElementaryBody.png" />
-    <Resource Include="Assets\Graphic\Pets\-1_TestCat\TestCat.png" />
+    <Content Include="Assets\Graphic\Pets\Dog_ElementaryBody.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Graphic\Pets\-1_TestCat\TestCat.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Remove="Assets\Graphic\Pets\-2_Supiki\Sprites.json" />
+    <Content Include="Assets\Graphic\Pets\-2_Supiki\Sprites.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Remove="Assets\Graphic\Pets\-1_TestCat\Sprites.json" />
+    <Content Include="Assets\Graphic\Pets\-1_TestCat\Sprites.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

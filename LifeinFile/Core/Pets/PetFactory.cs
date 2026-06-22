@@ -3,6 +3,7 @@ using LifeinFile.Helper;
 using LifeinFile.Models.Pets;
 using LifeinFile.Views.Pets;
 using LifeinFile.Views.Pets.Animation.DirectionAnimation;
+using System.Diagnostics;
 using PetWindow = LifeinFile.Windows.PetWindow;
 
 namespace LifeinFile.Core.Pets
@@ -21,7 +22,7 @@ namespace LifeinFile.Core.Pets
 
             PetExternal external = new PetExternal();
             
-            PetModel model = new PetModel(initData.Name, initData.Position, external);
+            PetModel model = new PetModel(initData.Name, initData.Position, initData.Sprites, external);
             
             PetWindow window = new PetWindow(model);
             window.Show();
@@ -37,6 +38,9 @@ namespace LifeinFile.Core.Pets
             PetMoveBrain moveBrain = new PetMoveBrain(model);
             
             GaugeView gauge = new GaugeView(model, window);
+            
+            Debug.Write(initData.Sprites);
+            SpriteController spriteController = new SpriteController(model, window);
             
             PetAnimationsCreator creator = new PetAnimationsCreator(model, window);
             AnimationContext animationContext = new AnimationContext();

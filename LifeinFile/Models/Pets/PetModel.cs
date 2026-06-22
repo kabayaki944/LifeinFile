@@ -5,6 +5,7 @@ using LifeinFile.Helper;
 using LifeinFile.Views.Pets;
 using Reactive.Bindings;
 using Reactive.Bindings.Disposables;
+using Reactive.Bindings.Extensions;
 using System.Numerics;
 
 namespace LifeinFile.Models.Pets
@@ -28,6 +29,39 @@ namespace LifeinFile.Models.Pets
 
         private PetExternal _external;
         public CageExternal BelongCage => PetCageConnector.GetCageOfPet(_external);
+        
+        //---Able to ---//
+        public ReactiveProperty<PetState>  State { get;} = new ReactiveProperty<PetState>();
+        public bool AbleToMove { get; private set; }
+        public bool AbleToInteract { get; private set; }
+        public bool AbleToConsumeGauge { get; private set; }
+
+        void StateSubscribe()
+        {
+            State.Subscribe(state =>
+                {
+                    switch (state)
+                    {
+                        case PetState.Preview:
+                            AbleToMove = true;
+                            AbleToInteract = false;
+                            AbleToConsumeGauge = false;
+                            break;
+                        case PetState.Active:
+                            AbleToMove = true;
+                            AbleToInteract = true;
+                            AbleToConsumeGauge = true;
+                            break;
+                        case PetState.Pose:
+                            AbleToMove = false;
+                            AbleToInteract = false;
+                            AbleToConsumeGauge = false;
+                            break;
+                    }
+                })
+                .AddTo(Disposables);
+        }
+        
         
         //---Reactive---//
         public CompositeDisposable Disposables{ get; }= new CompositeDisposable();
@@ -68,12 +102,16 @@ namespace LifeinFile.Models.Pets
                 _currentCom = 0;
         }
 
-        public PetModel(string name, Vector2 position, PetExternal external)
+        public PetModel(string name, Vector2 position, PetSprites sprites, PetExternal external)
         {
             Name.Value = name;
             Position = position;
             Velocity.Value = Vector2.Zero;
+            Sprites.Value = sprites;
+            
             _external = external;
+            
+            StateSubscribe();
         }
         
         //IReadOnly

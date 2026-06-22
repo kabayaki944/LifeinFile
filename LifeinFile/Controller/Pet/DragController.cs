@@ -3,6 +3,7 @@ using LifeinFile.Core.Pets;
 using LifeinFile.Models.Pets;
 using LifeinFile.Windows;
 using Reactive.Bindings.Extensions;
+using System.Reactive.Linq;
 using System.Windows;
 
 namespace LifeinFile.Controller.PetSystem
@@ -26,11 +27,13 @@ namespace LifeinFile.Controller.PetSystem
 
             // ① マウスを「押し込んだ」時：ドラッグ移動を開始する
             input.OnMouseLeftDownAsObservable
+                .Where(_ => model.AbleToInteract)
                 .Subscribe(_ => _driver.StartDragMove())
                 .AddTo(model.Disposables);
 
             // ② マウスを「離した」時：ドラッグ終了なので、ケージに入ったか判定する
             input.OnMouseLeftUpAsObservable
+                .Where(_ => model.AbleToInteract)
                 .Subscribe(_ => CheckDropInCage())
                 .AddTo(model.Disposables);
         }
