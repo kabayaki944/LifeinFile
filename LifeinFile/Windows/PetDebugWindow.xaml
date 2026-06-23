@@ -1,0 +1,18 @@
+<Window x:Class="LifeinFile.Windows.PetDebugWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Pet Debug" Height="200" Width="400" Topmost="True">
+    <StackPanel Margin="10">
+        <TextBlock x:Name="TextId" Text="Id"/>
+        <TextBlock x:Name="TextName" Text="Name"/>
+        <TextBlock x:Name="TextPosition" Text="Position"/>
+        <TextBlock x:Name="TextVelocity" Text="Velocity"/>
+        <TextBlock x:Name="TextDirection" Text="Direction"/>
+        <TextBlock x:Name="TextState" Text="State"/>
+        <TextBlock x:Name="TextHunger" Text="Hunger" />
+        <TextBlock x:Name="TextCommunication" Text="Communication"/>
+
+        <TextBlock x:Name="TextMoveStep" Text="MoveStep"/>
+
+    </StackPanel>
+</Window>

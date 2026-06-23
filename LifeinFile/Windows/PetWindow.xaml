@@ -9,6 +9,16 @@
                  Topmost="True"
                  ResizeMode="NoResize">
     
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Debug">
+            
+                <MenuItem Header="Debug Windowを表示" Click="MenuItem_Debug_Click"/>
+            
+            </MenuItem>
+        </ContextMenu>
+    </Window.ContextMenu>
+    
     <Grid MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" Background="#01000000">
 
         <Image x:Name ="Image" Source="/Assets/Graphic/Pets/-2_Supiki/supiki.png" Margin="0,20,0,0" RenderTransformOrigin="0.5,1.0">

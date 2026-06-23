@@ -6,10 +6,10 @@ using System.Reactive.Linq;
 
 namespace LifeinFile.Controller.PetSystem
 { 
-    public struct MoveData
+    public struct MoveStep
     {
         public Vector2 move;
-        public double duration;
+        public int duration;
     }
 
     public class PetMoveBrain
@@ -23,8 +23,8 @@ namespace LifeinFile.Controller.PetSystem
 
         private Random _random = new Random();
 
-        MoveData _currentData;
-        private int _actionTimer = 0;
+        public MoveStep CurrentStep{get; private set;}
+        public int ActionTimer { get; private set; } = 0;
 
         readonly PetModel _model;
         public PetMoveBrain(PetModel model)
@@ -39,15 +39,15 @@ namespace LifeinFile.Controller.PetSystem
         
         void OnUpdate()
         { 
-            _actionTimer++;
+            ActionTimer++;
 
             //最初に起動したとき
-            if(_currentData.duration == 0) DecideNextMoveData();
+            if(CurrentStep.duration == 0) DecideNextMoveData();
             
-            if (_actionTimer >= _currentData.duration)
+            if (ActionTimer >= CurrentStep.duration)
             {
                 DecideNextMoveData();
-                _model.Velocity.Value = _currentData.move;
+                _model.Velocity.Value = CurrentStep.move;
             }
         }
 
@@ -56,11 +56,11 @@ namespace LifeinFile.Controller.PetSystem
         {
             int nextAction = _random.Next(2);
 
-            MoveData data;
+            MoveStep step;
 
             if (nextAction == 0)
             {
-                data = new MoveData
+                step = new MoveStep
                 {
                     move = Vector2.Zero,
                     duration = _random.Next(MIN_IDLE_DURATION, MAX_IDLE_DURATION)
@@ -68,7 +68,7 @@ namespace LifeinFile.Controller.PetSystem
             }
             else
             {
-               data = new MoveData
+               step = new MoveStep
                {
                    move = new Vector2(
                         _random.Next(MIN_SPEED, MAX_SPEED),
@@ -77,8 +77,8 @@ namespace LifeinFile.Controller.PetSystem
                    duration = _random.Next(MIN_MOVE_DURATION, MAX_MOVE_DURATION)
                };
             }
-            _currentData = data;
-            _actionTimer = 0;
+            CurrentStep = step;
+            ActionTimer = 0;
         }
     }
 }

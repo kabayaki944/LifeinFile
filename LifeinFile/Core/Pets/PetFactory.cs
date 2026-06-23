@@ -52,7 +52,8 @@ namespace LifeinFile.Core.Pets
             AnimateStateMachine directionStateMachine =
                 new AnimateStateMachine(model.Disposables, animationContext);
             DirectionAnimationController directionAnimationController = new DirectionAnimationController(model, directionStateMachine, creator);
-            
+
+            ShowDebugWindow showDebugWindow = new ShowDebugWindow(model, moveBrain, window);
             
             PetCollision collision = new PetCollision(model, window);
             PetScreenCollider screenCollider = new PetScreenCollider(model, window, collision);

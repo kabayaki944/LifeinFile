@@ -14,7 +14,7 @@ namespace LifeinFile.Models.Pets
     {
         //---Basic---//
         public ReactiveProperty<string> Name { get;} = new ReactiveProperty<string>("");
-        public Vector2 Position { get; set;}
+        public ReactiveProperty<Vector2> Position { get; set; } = new ReactiveProperty<Vector2>();
         public ReactiveProperty<Vector2> Velocity { get; } = new ReactiveProperty<Vector2>();
         public ReactiveProperty<Direction> Direction { get;} = new ReactiveProperty<Direction>(Helper.Direction.Right);
 
@@ -77,47 +77,50 @@ namespace LifeinFile.Models.Pets
         public CompositeDisposable Disposables{ get; }= new CompositeDisposable();
 
         //---Hunger---//
-        private const double MAX_HUNGER = 100.0;
-        private double _currentHunger = MAX_HUNGER / 2f;
-        public double CurrentHunger => _currentHunger;
+        public double MaxHunger { get; set; } = 100.0;
+        readonly ReactiveProperty<double> _currentHunger;
+        public IReadOnlyReactiveProperty<double> CurrentHunger => _currentHunger;
         
         //---Communication---//
-        private const double MAX_COM = 100.0;
-        private double _currentCom = MAX_COM / 2f;
-        public double CurrentCom => _currentCom;
+        public double MaxCom { get; set; } = 100.0;
+        readonly ReactiveProperty<double> _currentCom;
+        public IReadOnlyReactiveProperty<double> CurrentCom => _currentCom;
 
         public void AddHunger(double amount)
         {
-            _currentHunger += amount;
-            if (CurrentHunger > MAX_HUNGER)
-                _currentHunger = MAX_HUNGER;
+            _currentHunger.Value += amount;
+            if (CurrentHunger.Value > MaxHunger)
+                _currentHunger.Value = MaxHunger;
             
         }
         public void ConsumeHunger(double amount)
         {
-            _currentHunger -= amount;
-            if (CurrentHunger < 0)
-                _currentHunger = 0;
+            _currentHunger.Value -= amount;
+            if (CurrentHunger.Value < 0)
+                _currentHunger.Value = 0;
         }
         public void AddCom(double amount)
         {
-            _currentCom += amount;
-            if (CurrentCom > MAX_COM)
-                _currentCom = MAX_COM;
+            _currentCom.Value += amount;
+            if (CurrentCom.Value > MaxCom)
+                _currentCom.Value = MaxCom;
         }
         public void ConsumeCom(double amount)
         {
-            _currentCom -= amount;
-            if (CurrentCom < 0)
-                _currentCom = 0;
+            _currentCom.Value -= amount;
+            if (CurrentCom.Value < 0)
+                _currentCom.Value = 0;
         }
 
         public PetModel(string name, Vector2 position, PetSprites sprites, PetExternal external)
         {
             Name.Value = name;
-            Position = position;
+            Position.Value = position;
             Velocity.Value = Vector2.Zero;
             Sprites.Value = sprites;
+
+            _currentHunger = new ReactiveProperty<double>(MaxHunger / 2);
+            _currentCom = new ReactiveProperty<double>(MaxCom / 2);
             
             _external = external;
             

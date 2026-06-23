@@ -1,7 +1,11 @@
 ﻿using LifeinFile.Controller.PetSystem;
+using LifeinFile.Helper;
 using LifeinFile.Models.Pets;
 using Reactive.Bindings.Extensions;
 using System.Net.Mime;
+using System.Numerics;
+using System.Reactive;
+using System.Reactive.Subjects;
 using System.Windows;
 using System.Windows.Input;
 
@@ -16,6 +20,10 @@ namespace LifeinFile.Windows
             HungerGauge.Visibility = Visibility.Hidden;
             ComGauge.Visibility = Visibility.Hidden;
             _model = model;
+
+            ProvideUpdate.LateUpdateAsObservable
+                .Subscribe(_ => model.Position.Value = new Vector2((float)Left, (float)Top))
+                .AddTo(_model.Disposables);
             
             model.Name.Subscribe(newName => Title =  newName)
                 .AddTo(model.Disposables);
@@ -69,7 +77,14 @@ namespace LifeinFile.Windows
             Uri uri = new Uri(spriteName, UriKind.RelativeOrAbsolute);
             Image.Source = new System.Windows.Media.Imaging.BitmapImage(uri);
         }
+
+        Subject<Unit> _onDebugMenuClicked = new Subject<Unit>();
+        public IObservable<Unit> OnDebugMenuClicked => _onDebugMenuClicked;
+        private void MenuItem_Debug_Click(object sender, RoutedEventArgs e) => _onDebugMenuClicked.OnNext(Unit.Default);
         
         ~PetWindow() => System.Diagnostics.Debug.WriteLine("PetWindow is clear");
+
+        
+    
     }
 }

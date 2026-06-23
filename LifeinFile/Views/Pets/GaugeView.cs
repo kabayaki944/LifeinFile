@@ -18,10 +18,10 @@ namespace LifeinFile.Views.Pets
                 .AddTo(_model.Disposables);
         }
 
-        public void OnUpdateLate()
+        void OnUpdateLate()
         {
-            _window.HungerGauge.Value = _model.CurrentHunger;
-            _window.ComGauge.Value = _model.CurrentCom;
+            _window.HungerGauge.Value = _model.CurrentHunger.Value;
+            _window.ComGauge.Value = _model.CurrentCom.Value;
         }
     }
 }
