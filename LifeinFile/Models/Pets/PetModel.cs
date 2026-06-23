@@ -81,10 +81,10 @@ namespace LifeinFile.Models.Pets
         readonly ReactiveProperty<double> _currentHunger;
         public IReadOnlyReactiveProperty<double> CurrentHunger => _currentHunger;
         
-        //---Communication---//
-        public double MaxCom { get; set; } = 100.0;
-        readonly ReactiveProperty<double> _currentCom;
-        public IReadOnlyReactiveProperty<double> CurrentCom => _currentCom;
+        //---Affection---//
+        public double MaxAffection { get; set; } = 100.0;
+        readonly ReactiveProperty<double> _currentAffection;
+        public IReadOnlyReactiveProperty<double> CurrentAffection => _currentAffection;
 
         public void AddHunger(double amount)
         {
@@ -99,17 +99,17 @@ namespace LifeinFile.Models.Pets
             if (CurrentHunger.Value < 0)
                 _currentHunger.Value = 0;
         }
-        public void AddCom(double amount)
+        public void AddAffection(double amount)
         {
-            _currentCom.Value += amount;
-            if (CurrentCom.Value > MaxCom)
-                _currentCom.Value = MaxCom;
+            _currentAffection.Value += amount;
+            if (CurrentAffection.Value > MaxAffection)
+                _currentAffection.Value = MaxAffection;
         }
-        public void ConsumeCom(double amount)
+        public void ConsumeAffection(double amount)
         {
-            _currentCom.Value -= amount;
-            if (CurrentCom.Value < 0)
-                _currentCom.Value = 0;
+            _currentAffection.Value -= amount;
+            if (CurrentAffection.Value < 0)
+                _currentAffection.Value = 0;
         }
 
         public PetModel(string name, Vector2 position, PetSprites sprites, PetExternal external)
@@ -120,7 +120,7 @@ namespace LifeinFile.Models.Pets
             Sprites.Value = sprites;
 
             _currentHunger = new ReactiveProperty<double>(MaxHunger / 2);
-            _currentCom = new ReactiveProperty<double>(MaxCom / 2);
+            _currentAffection = new ReactiveProperty<double>(MaxAffection / 2);
             
             _external = external;
             

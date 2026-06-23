@@ -6,7 +6,7 @@ namespace LifeinFile.Controller.PetSystem
 {
     public class Interacted
     {
-        const double AMOUNT_COM = 20f;
+        const double AMOUNT_AFFECTION = 20f;
         
         PetModel _model;
         public Interacted(PetModel model, IProvideWindowInput input)
@@ -17,6 +17,6 @@ namespace LifeinFile.Controller.PetSystem
                 .AddTo(model.Disposables);
         }
 
-        void Interact() => _model.AddCom(AMOUNT_COM);
+        void Interact() => _model.AddAffection(AMOUNT_AFFECTION);
     }
 }

@@ -10,7 +10,7 @@
         <TextBlock x:Name="TextDirection" Text="Direction"/>
         <TextBlock x:Name="TextState" Text="State"/>
         <TextBlock x:Name="TextHunger" Text="Hunger" />
-        <TextBlock x:Name="TextCommunication" Text="Communication"/>
+        <TextBlock x:Name="TextAffection" Text="Affection"/>
 
         <TextBlock x:Name="TextMoveStep" Text="MoveStep"/>
 

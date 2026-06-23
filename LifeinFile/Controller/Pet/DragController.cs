@@ -30,8 +30,10 @@ namespace LifeinFile.Controller.PetSystem
                 .Where(_ => model.AbleToInteract)
                 .Subscribe(_ =>
                 {
-                    _driver.StartDragMove();
                     model.State.Value = PetState.Draged;
+                    _driver.StartDragMove();
+                    CheckDropInCage();
+                    model.State.Value = PetState.Active;
                 })
                 .AddTo(model.Disposables);
 
@@ -40,8 +42,6 @@ namespace LifeinFile.Controller.PetSystem
                 .Where(_ => model.AbleToInteract)
                 .Subscribe(_ =>
                 {
-                    CheckDropInCage();
-                    model.State.Value = PetState.Active;
                 })
                 .AddTo(model.Disposables);
         }

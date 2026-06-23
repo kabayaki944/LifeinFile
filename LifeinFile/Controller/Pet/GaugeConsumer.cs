@@ -13,7 +13,7 @@ namespace LifeinFile.Controller.PetSystem
     public class GaugeConsumer
     {
         const double HUNGER_CONSUME_RATE = 0.05;
-        const double COM_CONSUME_RATE = 0.05;
+        const double AFFECTION_CONSUME_RATE = 0.05;
 
         readonly PetModel _model;
         public GaugeConsumer(PetModel model)
@@ -29,7 +29,7 @@ namespace LifeinFile.Controller.PetSystem
         {
             //Debug.WriteLine($"Hunger before consuming: {_model.CurrentHunger}");
             _model.ConsumeHunger(HUNGER_CONSUME_RATE);
-            _model.ConsumeCom(COM_CONSUME_RATE);
+            _model.ConsumeAffection(AFFECTION_CONSUME_RATE);
         }
     }
 }

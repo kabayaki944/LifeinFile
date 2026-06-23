@@ -24,7 +24,7 @@ namespace LifeinFile.Views.Pets
 
         void OnUpdate()
         {
-            if(_model.Velocity.Value != Vector2.Zero) _stateMachine.SetAnimation(_animations.Move);
+            if(_model.Velocity.Value != Vector2.Zero && _model.State.Value != PetState.Draged) _stateMachine.SetAnimation(_animations.Move);
             else _stateMachine.SetAnimation(_animations.Breath);
         }
         

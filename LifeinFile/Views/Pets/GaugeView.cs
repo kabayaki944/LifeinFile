@@ -21,7 +21,7 @@ namespace LifeinFile.Views.Pets
         void OnUpdateLate()
         {
             _window.HungerGauge.Value = _model.CurrentHunger.Value;
-            _window.ComGauge.Value = _model.CurrentCom.Value;
+            _window.AffectionGauge.Value = _model.CurrentAffection.Value;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace LifeinFile.Windows
         {
             InitializeComponent();
             HungerGauge.Visibility = Visibility.Hidden;
-            ComGauge.Visibility = Visibility.Hidden;
+            AffectionGauge.Visibility = Visibility.Hidden;
             _model = model;
 
             ProvideUpdate.LateUpdateAsObservable
@@ -33,7 +33,7 @@ namespace LifeinFile.Windows
             if(!_model.AbleToShowGauge) return;
             // ゲージを表示する
             HungerGauge.Visibility = Visibility.Visible;
-            ComGauge.Visibility = Visibility.Visible;
+            AffectionGauge.Visibility = Visibility.Visible;
         }
 
         // カーソルがPet（Grid）から外れた時
@@ -41,7 +41,7 @@ namespace LifeinFile.Windows
         {
             // ゲージを隠す
             HungerGauge.Visibility = Visibility.Hidden;
-            ComGauge.Visibility = Visibility.Hidden;
+            AffectionGauge.Visibility = Visibility.Hidden;
         }
 
         public (double x, double y) GetSquishScale() => (SquishScale.ScaleX, SquishScale.ScaleY);

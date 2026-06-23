@@ -24,7 +24,7 @@ namespace LifeinFile.Windows
             model.Direction.Subscribe(UpdateDirection).AddTo(model.Disposables);
             model.State.Subscribe(UpdateState).AddTo(model.Disposables);
             model.CurrentHunger.Subscribe(hunger => UpdateHunger(hunger, model.MaxHunger)).AddTo(model.Disposables);
-            model.CurrentCom.Subscribe(com =>  UpdateCommunication(com, model.MaxCom)).AddTo(model.Disposables);
+            model.CurrentAffection.Subscribe(com =>  UpdateAffection(com, model.MaxAffection)).AddTo(model.Disposables);
             ProvideUpdate.LateUpdateAsObservable.Subscribe(_ => UpdateMoveStep(moveBrain.CurrentStep, moveBrain.ActionTimer)).AddTo(model.Disposables);
         }
 
@@ -35,7 +35,7 @@ namespace LifeinFile.Windows
         void UpdateDirection(Direction direction) => TextDirection.Text = $"Direction: {direction}";
         void UpdateState(PetState state) => TextState.Text = $"State: {state}";
         void UpdateHunger(double hunger, double maxHunger) => TextHunger.Text = $"Hunger: {hunger:F1}/{maxHunger}";
-        void UpdateCommunication(double communication, double maxCommunication) => TextCommunication.Text = $"Communication: {communication:F1}/ {maxCommunication}";
+        void UpdateAffection(double affection, double maxAffection) => TextAffection.Text = $"Affection: {affection:F1}/ {maxAffection}";
         void UpdateMoveStep(MoveStep step, int timer) => TextMoveStep.Text =  $"MoveStep: direction({step.move}), duration({timer}/{step.duration})";
     }
 }
