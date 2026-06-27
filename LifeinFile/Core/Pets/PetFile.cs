@@ -39,6 +39,21 @@ namespace LifeinFile.Core.Pets
             PositionY = window.Top;
         }
 
+        public void Write(ZipArchive archive)
+        {
+            string newJsonText = JsonSerializer.Serialize(this, JsonHelper.Options);
+            string entryPath = $"Pets/{Name}_{InstanceId.Substring(0, 8)}.json";
+            
+            ZipArchiveEntry petEntry = archive.CreateEntry(entryPath);
+
+            // そのエントリーの中にJSONのテキストを書き込む
+            using (StreamWriter writer = new StreamWriter(petEntry.Open()))
+            {
+                writer.Write(newJsonText);
+            }
+        }
+
+        /*
         public void CreateFile(string cagePath)
         {
             string newJsonText = JsonSerializer.Serialize(this, JsonHelper.Options);
@@ -62,5 +77,6 @@ namespace LifeinFile.Core.Pets
                 }
             }
         }
+        */
     }
 }

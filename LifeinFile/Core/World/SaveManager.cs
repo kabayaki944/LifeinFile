@@ -3,6 +3,7 @@ using LifeinFile.Core.Pets;
 using LifeinFile.Models.Cages;
 using Microsoft.Win32;
 using System.IO;
+using System.IO.Compression;
 
 namespace LifeinFile.Core.Facade
 {
@@ -19,18 +20,24 @@ namespace LifeinFile.Core.Facade
         {
             var pets = PetCageConnector.GetPetsInCage(cageExternal);
             
-            string directoryPath = GetSavePath(cageExternal.Model);
-            if(directoryPath == null) return SaveResult.Cancelled;
-            
-            cageExternal.Model.Path = directoryPath;
+            string zipPath = GetSavePath(cageExternal.Model);
+            if(zipPath == null) return SaveResult.Cancelled;
 
             CageFile cageFile = cageExternal.InstanceFile();
-            string cagePath = cageFile.CreateFile(directoryPath);
+            zipPath = Path.Combine(zipPath, cageFile.CageFileName);
+            cageExternal.Model.Path = zipPath;
 
-            foreach (var petExternal in pets)
-            {
-                PetFile petFile = petExternal.InstanceFile();
-                petFile.CreateFile(cagePath);
+            
+            using (FileStream zipToOpen = new FileStream(zipPath, FileMode.Create))
+            using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Create))
+            { 
+                cageFile.Write(archive);
+
+                foreach (var petExternal in pets)
+                {
+                    PetFile petFile = petExternal.InstanceFile();
+                    petFile.Write(archive);
+                }
             }
             return SaveResult.Success;
         }

@@ -10,30 +10,49 @@ namespace LifeinFile.Core.Cage
 {
     public class CageFile
     {
-        public string CageInstanceId{get;set;}
-        public string CageName{get;set;}
-        public string Type{get;set;}
-        
-        public double PositionX{get;set;}
-        public double PositionY{get;set;}
-        public double Width{get;set;}
-        public double Height{get;set;}
+        public string CageInstanceId { get; set; }
+        public string CageName { get; set; }
+        public string Type { get; set; }
+
+        public double PositionX { get; set; }
+        public double PositionY { get; set; }
+        public double Width { get; set; }
+        public double Height { get; set; }
 
         public CageFile(CageModel model, IReadOnlyWindowModel window)
         {
             CageInstanceId = model.InstanceId;
             CageName = model.Name.Value;
-            
+
             PositionX = window.CurrentLeft;
             PositionY = window.CurrentTop;
             Width = window.CurrentWidth;
             Height = window.CurrentHeight;
         }
 
+        public string CageFileName => $"{CageName}_{CageInstanceId.Substring(0, 8)}.cage";
+
+        public void Write(ZipArchive archive)
+        {
+            // 自分自身のデータを読みやすいJSON文字列に変換する
+            string jsonText = JsonSerializer.Serialize(this, JsonHelper.Options);
+
+            // 1. ZIPの直下に CageData.json を作成してデータを書き込む
+            ZipArchiveEntry cageEntry = archive.CreateEntry("CageData.json");
+            using (StreamWriter writer = new StreamWriter(cageEntry.Open()))
+            {
+                writer.Write(jsonText);
+            }
+
+            // 2. 空の Pets ディレクトリを作成する
+            var pets = archive.CreateEntry("Pets/");
+        }
+
+        /*
         public string CreateFile(string directoryPath)
         {
             string savePath = Path.Combine(directoryPath, $"{CageName}_{CageInstanceId.Substring(0, 8)}.cage");
-            
+
             // 自分自身のデータを読みやすいJSON文字列に変換する
             string jsonText = JsonSerializer.Serialize(this, JsonHelper.Options);
 
@@ -52,6 +71,11 @@ namespace LifeinFile.Core.Cage
                 archive.CreateEntry("Pets/");
                 return Path.GetFullPath(savePath);
             }
+        }
+        */
+
+        public void ReadFile(string petFilePath)
+        {
         }
     }
 }
