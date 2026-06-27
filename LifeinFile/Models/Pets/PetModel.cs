@@ -13,6 +13,7 @@ namespace LifeinFile.Models.Pets
     public class PetModel:IExternalModel
     {
         //---Basic---//
+        public string InstanceId{get;set;}
         public ReactiveProperty<string> Name { get;} = new ReactiveProperty<string>("");
         public ReactiveProperty<Vector2> Position { get; set; } = new ReactiveProperty<Vector2>();
         public ReactiveProperty<Vector2> Velocity { get; } = new ReactiveProperty<Vector2>();
@@ -24,7 +25,7 @@ namespace LifeinFile.Models.Pets
             Direction.Value = (Velocity.Value.X > 0) ? Helper.Direction.Right : Helper.Direction.Left;
         }
         
-        public ReactiveProperty<PetSprites>  Sprites { get;} = new ReactiveProperty<PetSprites>();
+        public ReactiveProperty<int>  SpritesId { get;} = new ReactiveProperty<int>();
 
 
         private PetExternal _external;
@@ -112,12 +113,13 @@ namespace LifeinFile.Models.Pets
                 _currentAffection.Value = 0;
         }
 
-        public PetModel(string name, Vector2 position, PetSprites sprites, PetExternal external)
+        public PetModel(string name, Vector2 position, int spritesId, PetExternal external)
         {
             Name.Value = name;
+            InstanceId = Guid.NewGuid().ToString();
             Position.Value = position;
             Velocity.Value = Vector2.Zero;
-            Sprites.Value = sprites;
+            SpritesId.Value = spritesId;
 
             _currentHunger = new ReactiveProperty<double>(MaxHunger / 2);
             _currentAffection = new ReactiveProperty<double>(MaxAffection / 2);

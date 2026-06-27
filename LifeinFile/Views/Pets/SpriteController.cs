@@ -1,3 +1,4 @@
+using LifeinFile.Core.Pets;
 using LifeinFile.Models.Pets;
 using LifeinFile.Windows;
 using Reactive.Bindings.Extensions;
@@ -13,11 +14,18 @@ namespace LifeinFile.Views.Pets
             _model = model;
             _window = petWindow;
             
-            model.Sprites.Subscribe(_ =>ChangeToNormal())
+            model.SpritesId.Subscribe(_ =>ChangeToNormal())
                 .AddTo(model.Disposables);
         }
 
-        PetSprites Sprites => _model.Sprites.Value;
+        PetSprites Sprites
+        {
+            get
+            {
+                PetSpritesDictionary.TryGet(_model.SpritesId.Value,out var sprites);
+                return sprites;
+            }
+        }
 
         public void Change(SpriteType type)
         {

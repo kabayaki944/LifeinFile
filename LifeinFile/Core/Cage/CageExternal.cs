@@ -6,17 +6,19 @@ namespace LifeinFile.Core.Cage
 {
     public class CageExternal
     {
-        public IExternalModel Model { get; private set; }
+        private CageModel _model;
+        public IExternalModel Model => _model;
         public CageWindow Window { get; private set;}
 
         LifeSystem _lifeSystem;
-        public void Construct(IExternalModel model, CageWindow window, LifeSystem lifeSystem)
+        public void Construct(CageModel model, CageWindow window, LifeSystem lifeSystem)
         {
-            Model = model;
+            _model = model;
             Window = window;
             _lifeSystem = lifeSystem;
         }
         
         public void Kill() => _lifeSystem.Kill();
+        public CageFile InstanceFile() => new CageFile(_model, Window);
     }
 }

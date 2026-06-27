@@ -9,13 +9,14 @@ namespace LifeinFile.Core.Pets
 {
     public class PetExternal
     {
-        public IExternalModel Model { get; private set; }
+        private PetModel  _model;
+        public IExternalModel Model => _model;
         public Window Window { get; private set; }
         LifeSystem _lifeSystem;
         PetCollision _collision;
-        public void Construct(IExternalModel model, PetCollision collision, PetWindow window, LifeSystem lifeSystem)
+        public void Construct(PetModel model, PetCollision collision, PetWindow window, LifeSystem lifeSystem)
         {
-            Model = model;
+            _model = model;
             _collision = collision;
             Window = window;
             _lifeSystem = lifeSystem;
@@ -24,6 +25,7 @@ namespace LifeinFile.Core.Pets
         
         public void OnCollision(CollisionResult result) => _collision.OnCollision(result);
         public void Kill() => _lifeSystem.Kill();
+        public PetFile InstanceFile() => new PetFile(_model, Window);
         
         ~PetExternal() => System.Diagnostics.Debug.WriteLine("PetExternal is clear");
     }

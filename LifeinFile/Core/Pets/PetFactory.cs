@@ -22,7 +22,7 @@ namespace LifeinFile.Core.Pets
 
             PetExternal external = new PetExternal();
             
-            PetModel model = new PetModel(initData.Name, initData.Position, initData.Sprites, external);
+            PetModel model = new PetModel(initData.Name, initData.Position, initData.SpritesId, external);
             
             PetWindow window = new PetWindow(model);
             window.Show();
@@ -39,7 +39,7 @@ namespace LifeinFile.Core.Pets
             
             GaugeView gauge = new GaugeView(model, window);
             
-            Debug.Write(initData.Sprites);
+            Debug.Write(initData.SpritesId);
             SpriteController spriteController = new SpriteController(model, window);
             
             PetAnimationsCreator creator = new PetAnimationsCreator(model, window);

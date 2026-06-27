@@ -52,9 +52,9 @@ namespace LifeinFile.Windows
             _previewCage = CageManager.CreateCage(new CageInitData("Review"));
             _previewCage.Model.State.Value = CageState.PetPreview;
             
-            if (PetSpritesDictionary.TryGetDefault(out var sprites))
+            if (PetSpritesDictionary.TryGetDefault(out var _))
             {
-                _previewPet = PetManager.CreatePet(new PetInitData(PetName.Value, sprites));
+                _previewPet = PetManager.CreatePet(new PetInitData(PetName.Value, PetSpritesDictionary.DEFAULT_PET_ID));
                 PetCageConnector.MovePetToCage(_previewPet, _previewCage);
             }
         }
@@ -92,7 +92,7 @@ namespace LifeinFile.Windows
             }
 
             // ③ 存在チェック
-            if (!PetSpritesDictionary.TryGet(newId, out var sprites))
+            if (!PetSpritesDictionary.TryGet(newId, out var _))
             {
                 PetIdError.Value = $"ID:{newId}は見つかりません";
                 return;
@@ -101,7 +101,7 @@ namespace LifeinFile.Windows
             //エラーなし
             PetIdError.Value = "";
             if (_previewPet != null)
-                _previewPet.Model.Sprites.Value = sprites; 
+                _previewPet.Model.SpritesId.Value = newId; 
         }
 
         // --- UI イベントハンドラ ---

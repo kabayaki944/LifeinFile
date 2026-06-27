@@ -8,21 +8,21 @@ namespace LifeinFile.Core.Pets
     {
         public string Name { get;}
         public Vector2 Position { get; }
-        public PetSprites Sprites { get; }
+        public int SpritesId { get; }
 
-        public PetInitData(string name, Vector2 position, PetSprites sprites)
+        public PetInitData(string name, Vector2 position, int spritesId)
         {
             Name = name;
             Position = position;
-            Sprites = sprites;
+            SpritesId = spritesId;
         }
-        public PetInitData(string name, PetSprites sprites)
+        public PetInitData(string name, int spritesId)
         {
             Name = name;
             float centerX = (float)SystemParameters.WorkArea.Width / 2;
             float centerY = (float)SystemParameters.WorkArea.Height / 2;
             Position = new Vector2(centerX, centerY);
-            Sprites = sprites;
+            SpritesId = spritesId;
         }
     }
 }

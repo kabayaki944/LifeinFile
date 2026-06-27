@@ -12,7 +12,7 @@ namespace LifeinFile.Models.Pets
         public ReactiveProperty<string> Name { get;}
         public ReactiveProperty<Vector2> Position { get;}
         public ReactiveProperty<Vector2> Velocity { get; }
-        public ReactiveProperty<PetSprites> Sprites { get; }
+        public ReactiveProperty<int> SpritesId { get; }
         
         public ReactiveProperty<PetState> State { get; }
     }

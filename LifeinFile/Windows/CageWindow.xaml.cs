@@ -18,5 +18,7 @@ namespace LifeinFile.Windows
             model.Name.Subscribe(newName => Title = newName)
                 .AddTo(model.Disposables);
         }
+        
+        private void MenuItem_DebugSave_Click(object sender, RoutedEventArgs e) => SaveManager.TrySave(External);
     }
 }

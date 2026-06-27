@@ -1,6 +1,10 @@
 ﻿using LifeinFile.Core.Cage;
 using LifeinFile.Core.Facade;
 using LifeinFile.Core.Pets;
+using LifeinFile.Core.Setting;
+using LifeinFile.Helper;
+using System.IO;
+using System.Net;
 using System.Windows;
 
 namespace LifeinFile.Windows
@@ -13,8 +17,23 @@ namespace LifeinFile.Windows
             
             MenuWindow menuWindow = new MenuWindow();
             menuWindow.Show();
+            
+            bool isFirst = CheckFirstStartUp();
+            UserSetting.StartUp(isFirst);
+
+            CreateDirectory();
 
             Close();
+        }
+
+        bool CheckFirstStartUp()
+        {
+            return !File.Exists(PathHelper.DefaultCagesPath);
+        }
+
+        void CreateDirectory()
+        {
+            Directory.CreateDirectory(PathHelper.DefaultCagesPath);
         }
     }
 }

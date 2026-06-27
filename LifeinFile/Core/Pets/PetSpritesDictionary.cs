@@ -1,3 +1,4 @@
+using LifeinFile.Helper;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -37,8 +38,7 @@ namespace LifeinFile.Core.Pets
         }
         
         // 検索するフォルダのパス（実行ファイルのある場所から Assets/Graphic/Pets を探す）
-        private static readonly string SearchDirectory =
-            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "Graphic", "Pets");
+        static string SearchDirectory => PathHelper.PetSpritesPath;
 
         /// <summary>
         /// Assets/Graphic/Pets フォルダ内のすべての Sprites.json を読み込み、辞書に登録する
