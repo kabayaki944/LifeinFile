@@ -1,3 +1,4 @@
+using LifeinFile.Core.Facade;
 using System.Windows;
 
 namespace LifeinFile.Windows
@@ -21,6 +22,11 @@ namespace LifeinFile.Windows
         public void ResetMenu()
         {
             MenuContent.Content = MainMenuPanel;
+        }
+
+        void LoadCageButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoadManager.TryLoad();
         }
     }
 }

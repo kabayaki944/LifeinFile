@@ -25,7 +25,6 @@ namespace LifeinFile.Core.Pets
             PetModel model = new PetModel(initData.Name, initData.Position, initData.SpritesId, external);
             
             PetWindow window = new PetWindow(model);
-            window.Show();
             
             DragController dragController = new DragController(model,  window, window, window, external);
 
@@ -59,7 +58,10 @@ namespace LifeinFile.Core.Pets
             PetScreenCollider screenCollider = new PetScreenCollider(model, window, collision);
             PetMoveDrive mover = new PetMoveDrive(model, window);
             
-            external.Construct(model, collision, window, lifeSystem);
+            PetFileController fileController = new PetFileController(model, window);
+            
+            external.Construct(model, collision, window, lifeSystem, fileController);
+            if(initData.IsShowOnCreate)window.Show();
 
             return external;
         }

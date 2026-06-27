@@ -19,15 +19,16 @@ namespace LifeinFile.Core.Cage
         public double Width { get; set; }
         public double Height { get; set; }
 
-        public CageFile(CageModel model, IReadOnlyWindowModel window)
+        public CageFile(){}
+        public CageFile(CageModel model, Window window)
         {
             CageInstanceId = model.InstanceId;
             CageName = model.Name.Value;
 
-            PositionX = window.CurrentLeft;
-            PositionY = window.CurrentTop;
-            Width = window.CurrentWidth;
-            Height = window.CurrentHeight;
+            PositionX = window.Left;
+            PositionY = window.Top;
+            Width = window.Width;
+            Height = window.Height;
         }
 
         public string CageFileName => $"{CageName}_{CageInstanceId.Substring(0, 8)}.cage";

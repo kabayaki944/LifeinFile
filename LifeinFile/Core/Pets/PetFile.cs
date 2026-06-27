@@ -20,10 +20,10 @@ namespace LifeinFile.Core.Pets
         
         public DateTime LastTime{get;set;}
         
-        public bool IsOutSide{get;set;}
         public double PositionX{get;set;}
         public double PositionY{get;set;}
         
+        public PetFile(){}
         public PetFile(PetModel model, Window window)
         {
             InstanceId = model.InstanceId;
@@ -32,25 +32,9 @@ namespace LifeinFile.Core.Pets
             Hunger= model.CurrentHunger.Value;
             Affection = model.CurrentAffection.Value;
             LastTime = DateTime.UtcNow;
-
-            IsOutSide = model.BelongCage == null;
             
             PositionX = window.Left;
             PositionY = window.Top;
-        }
-
-        public void Write(ZipArchive archive)
-        {
-            string newJsonText = JsonSerializer.Serialize(this, JsonHelper.Options);
-            string entryPath = $"Pets/{Name}_{InstanceId.Substring(0, 8)}.json";
-            
-            ZipArchiveEntry petEntry = archive.CreateEntry(entryPath);
-
-            // そのエントリーの中にJSONのテキストを書き込む
-            using (StreamWriter writer = new StreamWriter(petEntry.Open()))
-            {
-                writer.Write(newJsonText);
-            }
         }
 
         /*

@@ -9,7 +9,8 @@
     <ContentControl x:Name="MenuContent">
         <StackPanel x:Name="MainMenuPanel" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button Content="Pet作成" Width="150" Height="45" Margin="0,0,0,20" FontSize="16" Click="CreatePetButton_Click"/>
-            <Button Content="Cage作成" Width="150" Height="45" FontSize="16" Click="CreateCageButton_Click"/>
+            <Button Content="Cage作成" Width="150" Height="45" Margin="0,0,0,20" FontSize="16" Click="CreateCageButton_Click"/>
+            <Button Content="Cageロード" Width="150" Height="45" FontSize="16" Click="LoadCageButton_Click"/>
         </StackPanel>
     </ContentControl>
 </base:WindowBase>

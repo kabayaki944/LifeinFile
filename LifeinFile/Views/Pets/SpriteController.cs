@@ -22,6 +22,7 @@ namespace LifeinFile.Views.Pets
         {
             get
             {
+                Console.WriteLine(_model.SpritesId.Value);
                 PetSpritesDictionary.TryGet(_model.SpritesId.Value,out var sprites);
                 return sprites;
             }

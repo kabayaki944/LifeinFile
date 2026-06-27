@@ -25,7 +25,7 @@ namespace LifeinFile.Windows
                 .Subscribe(_ => model.Position.Value = new Vector2((float)Left, (float)Top))
                 .AddTo(_model.Disposables);
             
-            model.Name.Subscribe(newName => Title =  newName)
+            model.Name.Subscribe(newName => Title = newName ?? "")
                 .AddTo(model.Disposables);
         }
         private void Grid_MouseEnter(object sender, MouseEventArgs e)
@@ -81,6 +81,18 @@ namespace LifeinFile.Windows
         Subject<Unit> _onDebugMenuClicked = new Subject<Unit>();
         public IObservable<Unit> OnDebugMenuClicked => _onDebugMenuClicked;
         private void MenuItem_Debug_Click(object sender, RoutedEventArgs e) => _onDebugMenuClicked.OnNext(Unit.Default);
+        
+        public void EnableWindow(bool enable)
+        {
+            if(enable) Show();
+            else Hide();
+        }
+
+        public void ToggleEnableWindow()
+        {
+            if(Visibility == Visibility.Visible) Hide();
+            else Show();
+        }
         
         ~PetWindow() => System.Diagnostics.Debug.WriteLine("PetWindow is clear");
 

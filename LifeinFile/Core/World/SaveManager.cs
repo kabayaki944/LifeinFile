@@ -1,5 +1,6 @@
 using LifeinFile.Core.Cage;
 using LifeinFile.Core.Pets;
+using LifeinFile.Core.Setting;
 using LifeinFile.Models.Cages;
 using Microsoft.Win32;
 using System.IO;
@@ -35,8 +36,7 @@ namespace LifeinFile.Core.Facade
 
                 foreach (var petExternal in pets)
                 {
-                    PetFile petFile = petExternal.InstanceFile();
-                    petFile.Write(archive);
+                    petExternal.ExportFile(archive);
                 }
             }
             return SaveResult.Success;
@@ -50,17 +50,26 @@ namespace LifeinFile.Core.Facade
         static string GetSavePath(IExternalModel cageExternal)
         {
             Console.Write(cageExternal.Path);
-            // 保存処理の直前でチェック
+    
+            // フォルダが存在しない場合、ユーザーに新しい場所を聞く
             if (!Directory.Exists(cageExternal.Path))
             {
-                // 見つからない！ユーザーに新しい場所を聞く
-                var dialog = new SaveFileDialog { Filter = "Cage Files|*.cage" };
+                string defaultPath = UserSetting.Data.DefaultCreateCagePath;
+                string parentDir = Path.GetDirectoryName(defaultPath);
+                string targetFolderName = Path.GetFileName(defaultPath.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar));
+
+                var dialog = new OpenFolderDialog
+                {
+                    Title = "ケージデータの保存先フォルダを選択してください",
+                    InitialDirectory = parentDir,
+                    FolderName = targetFolderName 
+                };
+                
                 if (dialog.ShowDialog() == true)
                 {
-                    return dialog.FileName;
+                    return dialog.FolderName; 
                 }
-
-                return null;
+                return null; 
             }        
             return cageExternal.Path;
         }

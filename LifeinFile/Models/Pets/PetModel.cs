@@ -87,6 +87,7 @@ namespace LifeinFile.Models.Pets
         readonly ReactiveProperty<double> _currentAffection;
         public IReadOnlyReactiveProperty<double> CurrentAffection => _currentAffection;
 
+        public void SetHunger(double amount) => _currentHunger.Value = amount;
         public void AddHunger(double amount)
         {
             _currentHunger.Value += amount;
@@ -100,6 +101,7 @@ namespace LifeinFile.Models.Pets
             if (CurrentHunger.Value < 0)
                 _currentHunger.Value = 0;
         }
+        public void SetAffection(double amount) => _currentAffection.Value = amount;
         public void AddAffection(double amount)
         {
             _currentAffection.Value += amount;

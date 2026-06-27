@@ -17,9 +17,11 @@ namespace LifeinFile.Core.Cage
             CageMover mover = new CageMover(window, window, model);
             PetInCageMover petInCageMover = new PetInCageMover(model, window, window, external);
             CageCollider collider = new CageCollider(model, window);
+
+            CageFileController fileController = new CageFileController(model, window);
             
-            external.Construct(model, window, lifeSystem);
-            window.Show();
+            external.Construct(model, window, lifeSystem, fileController);
+            if(initData.IsShowOnCreate)window.Show();
 
             return external;
         }
