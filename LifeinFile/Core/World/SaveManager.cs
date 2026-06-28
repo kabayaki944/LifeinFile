@@ -32,7 +32,7 @@ namespace LifeinFile.Core.Facade
             using (FileStream zipToOpen = new FileStream(zipPath, FileMode.Create))
             using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Create))
             { 
-                cageFile.Write(archive);
+                cageExternal.ExportFile(archive);
 
                 foreach (var petExternal in pets)
                 {

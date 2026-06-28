@@ -11,22 +11,33 @@ namespace LifeinFile.Windows
     public partial class CageWindow : WindowBase
     {
         public CageExternal External { get; }
+        CageModel _model;
         public CageWindow(CageExternal external, CageModel model)
         {
             InitializeComponent();
             External = external;
+            _model = model;
+            
             model.Name.Subscribe(newName => Title = newName)
                 .AddTo(model.Disposables);
+            model.State.Subscribe(newState =>
+            {
+                if(newState == CageState.Desktop) Hide();
+                else Show();
+            }).AddTo(model.Disposables);
         }
-
+        
+        
         public void EnableWindow(bool enable)
         {
+            if(_model.State.Value == CageState.Desktop) return;
             if(enable) Show();
             else Hide();
         }
 
         public void ToggleEnableWindow()
         {
+            if(_model.State.Value == CageState.Desktop) return;
             if(Visibility == Visibility.Visible) Hide();
             else Show();
         }

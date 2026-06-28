@@ -28,5 +28,10 @@ namespace LifeinFile.Windows
         {
             LoadManager.TryLoad();
         }
+
+        void MenuItem_DebugSaveDesktopCage_Click(object sender, RoutedEventArgs e)
+        {
+            SaveManager.TrySave(CageManager.DesktopCage);
+        }
     }
 }

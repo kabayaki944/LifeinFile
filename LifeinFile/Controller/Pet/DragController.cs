@@ -73,7 +73,7 @@ namespace LifeinFile.Controller.PetSystem
             }
 
             // どのケージにも入っていなかった場合（外にドロップ）
-            PetCageConnector.MovePetToOut(_external);
+            PetCageConnector.MovePetToDesktop(_external);
         }
     }
 }

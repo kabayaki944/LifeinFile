@@ -2,6 +2,7 @@ using System.IO;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Text.Unicode;
 
 namespace LifeinFile.Helper
@@ -14,7 +15,9 @@ namespace LifeinFile.Helper
         {
             WriteIndented = true,
             // 日本語をエスケープせず、そのまま保存・読み込みできるようにする
-            Encoder = JavaScriptEncoder.Create(UnicodeRanges.All)
+            Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+            NumberHandling = JsonNumberHandling.AllowNamedFloatingPointLiterals,
+            Converters = { new JsonStringEnumConverter() },
         };
 
         // 書き込み時に使うBOMなしUTF-8エンコーディング

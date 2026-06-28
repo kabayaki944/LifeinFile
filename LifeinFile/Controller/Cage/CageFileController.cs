@@ -42,6 +42,7 @@ namespace LifeinFile.Controller.CageSystem
         {
             _model.InstanceId = cageFile.CageInstanceId;
             _model.Name.Value = cageFile.CageName;
+            _model.State.Value = cageFile.State;
             //Todo: Typeの実装
             _window.Left = cageFile.PositionX;
             _window.Top = cageFile.PositionY;

@@ -107,7 +107,7 @@ namespace LifeinFile.Windows
         // --- UI イベントハンドラ ---
         private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
-            PetCageConnector.MovePetToOut(_previewPet);
+            PetCageConnector.MovePetToDesktop(_previewPet);
             _previewPet.Model.State.Value = PetState.Active;
             _previewPet = null; // Killさせないために外す
             CloseMenu();

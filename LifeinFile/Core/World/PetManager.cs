@@ -15,7 +15,7 @@ namespace LifeinFile.Core.Facade
         {
             var pet = _petFactory.Create(data);
             _pets.Add(pet);
-            PetCageConnector.MovePetToOut(pet);
+            PetCageConnector.MovePetToDesktop(pet);
             return pet;
         }
         

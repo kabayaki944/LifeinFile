@@ -20,10 +20,10 @@ namespace LifeinFile.Core.Facade
         }
 
 
-        public static void MovePetToOut(PetExternal pet)
+        public static void MovePetToDesktop(PetExternal pet)
         { 
             Debug.WriteLine("Moving pet out of cage: " + pet.Model.Name);
-            _petCageMap[pet] = null;
+            _petCageMap[pet] = CageManager.DesktopCage;
             pet.Window.Owner = null;
         }
 

@@ -3,6 +3,7 @@ using LifeinFile.Core.Facade;
 using LifeinFile.Core.Pets;
 using LifeinFile.Core.Setting;
 using LifeinFile.Helper;
+using LifeinFile.Models.Cages;
 using System.IO;
 using System.Net;
 using System.Windows;
@@ -22,8 +23,15 @@ namespace LifeinFile.Windows
             UserSetting.StartUp(isFirst);
 
             CreateDirectory();
+            CreateDeskTopCage();
 
             Close();
+        }
+
+        void CreateDeskTopCage()
+        {
+            var cage = CageManager.CreateDesktopCage();
+            cage.Model.State.Value = CageState.Desktop;
         }
 
         bool CheckFirstStartUp()
@@ -35,5 +43,6 @@ namespace LifeinFile.Windows
         {
             Directory.CreateDirectory(PathHelper.DefaultCagesPath);
         }
+        
     }
 }

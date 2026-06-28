@@ -1,6 +1,7 @@
 using LifeinFile.Core.Cage;
 using LifeinFile.Core.Pets;
 using LifeinFile.Helper;
+using LifeinFile.Models.Cages;
 using Microsoft.Win32;
 using System.IO;
 using System.IO.Compression;
@@ -40,7 +41,16 @@ namespace LifeinFile.Core.Facade
             CageInitData cageInitData = new CageInitData("BeforeLoadName", false);
             CageExternal cageExternal = CageManager.CreateCage(cageInitData);
             cageExternal.ImportFile(files.cageFile);
-            cageExternal.EnableWindow(true);
+            
+            if(cageExternal.Model.State.Value == CageState.Desktop)
+            {
+                cageExternal.EnableWindow(false);
+                CageManager.ChangeDesktopCage(cageExternal);
+            }
+            else
+            {
+                cageExternal.EnableWindow(false);
+            }
 
             List<PetExternal> pets = new List<PetExternal>();
             foreach (var petFile in files.petFiles)

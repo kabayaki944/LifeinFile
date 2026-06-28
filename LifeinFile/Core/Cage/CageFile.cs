@@ -13,6 +13,7 @@ namespace LifeinFile.Core.Cage
         public string CageInstanceId { get; set; }
         public string CageName { get; set; }
         public string Type { get; set; }
+        public CageState State { get; set; }
 
         public double PositionX { get; set; }
         public double PositionY { get; set; }
@@ -24,6 +25,7 @@ namespace LifeinFile.Core.Cage
         {
             CageInstanceId = model.InstanceId;
             CageName = model.Name.Value;
+            State = model.State.Value;
 
             PositionX = window.Left;
             PositionY = window.Top;
@@ -32,23 +34,7 @@ namespace LifeinFile.Core.Cage
         }
 
         public string CageFileName => $"{CageName}_{CageInstanceId.Substring(0, 8)}.cage";
-
-        public void Write(ZipArchive archive)
-        {
-            // 自分自身のデータを読みやすいJSON文字列に変換する
-            string jsonText = JsonSerializer.Serialize(this, JsonHelper.Options);
-
-            // 1. ZIPの直下に CageData.json を作成してデータを書き込む
-            ZipArchiveEntry cageEntry = archive.CreateEntry("CageData.json");
-            using (StreamWriter writer = new StreamWriter(cageEntry.Open()))
-            {
-                writer.Write(jsonText);
-            }
-
-            // 2. 空の Pets ディレクトリを作成する
-            var pets = archive.CreateEntry("Pets/");
-        }
-
+        
         /*
         public string CreateFile(string directoryPath)
         {
