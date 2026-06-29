@@ -14,8 +14,15 @@ namespace LifeinFile.Core.Facade
         public static CageExternal DesktopCage => _desktopCage;
         public static IReadOnlyList<CageExternal> Cages => _cages;
         
-        public static void ChangeDesktopCage(CageExternal cage) => _desktopCage = cage; 
+        public static void ChangeDesktopCage(CageExternal cage) => _desktopCage = cage;
 
+        public static bool TryGetByInstanceId(string instanceId, out CageExternal cage)
+        {
+            cage = _cages.Find(external => external.Model.InstanceId == instanceId);
+            if(cage == null) return false;
+            return true;
+        }
+        
         public static CageExternal CreateDesktopCage()
         {
             CageInitData data = new CageInitData("DesktopCage", false);

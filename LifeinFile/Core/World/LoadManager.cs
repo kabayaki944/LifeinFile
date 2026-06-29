@@ -37,6 +37,21 @@ namespace LifeinFile.Core.Facade
                 Console.Error.Write("pet files not found.");
                 return LoadResult.Error;
             }
+
+            if (CageManager.TryGetByInstanceId(files.cageFile.CageInstanceId, out _))
+            {
+                Console.Error.Write("Cage instance exist already.");
+                return LoadResult.Error;
+            }
+
+            foreach (var pet in files.petFiles)
+            {
+                if (PetManager.TryGetByInstanceId(pet.InstanceId, out _))
+                {
+                    Console.Error.Write("Pet instance exist already.");
+                    return LoadResult.Error;
+                }
+            }
             
             CageInitData cageInitData = new CageInitData("BeforeLoadName", false);
             CageExternal cageExternal = CageManager.CreateCage(cageInitData);

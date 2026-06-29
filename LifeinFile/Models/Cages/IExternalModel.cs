@@ -9,6 +9,7 @@ namespace LifeinFile.Models.Cages
     public interface IExternalModel
     {
         public IReadOnlyReactiveProperty<string> Name { get; }
+        public string InstanceId { get; }
         public string Path { get; set; }
         public ReactiveProperty<CageState> State { get; }
     }

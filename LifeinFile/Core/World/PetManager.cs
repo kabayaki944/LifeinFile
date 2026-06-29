@@ -11,6 +11,13 @@ namespace LifeinFile.Core.Facade
         static List<PetExternal> _pets = new List<PetExternal>();
         public static IReadOnlyList<PetExternal> Pets => _pets;
 
+        public static bool TryGetByInstanceId(string instanceId, out PetExternal pet)
+        {
+            pet = _pets.Find(external => external.Model.InstanceId == instanceId);
+            if(pet == null) return false;
+            return true;
+        }
+        
         public static PetExternal CreatePet(PetInitData data)
         {
             var pet = _petFactory.Create(data);
